@@ -33,8 +33,8 @@ export function EmptyState({ icon: Icon = FolderOpen, title, description, action
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col items-center justify-center py-16 text-center"
     >
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
-        <Icon className="h-8 w-8 text-muted-foreground" />
+      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-border/70 bg-card shadow-[0_12px_40px_rgba(15,23,42,0.06)]">
+        <Icon className="h-7 w-7 text-muted-foreground" />
       </div>
       <h3 className="mb-2 text-lg font-semibold text-foreground">{title}</h3>
       <p className="mb-6 max-w-sm text-sm text-muted-foreground">{description}</p>

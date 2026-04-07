@@ -1,51 +1,17 @@
 import { Building2, FileText, Image as ImageIcon, Mail, MapPin, Phone, Sparkles, Bookmark } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 
-function getTone(kind: ReturnType<typeof getProductKind>) {
-  if (kind === 'directory') {
-    return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      soft: 'border border-slate-200 bg-slate-50',
-      muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
-    }
-  }
-  if (kind === 'editorial') {
-    return {
-      shell: 'bg-[#fbf6ee] text-[#241711]',
-      panel: 'border border-[#dcc8b7] bg-[#fffdfa]',
-      soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
-      muted: 'text-[#6e5547]',
-      action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-    }
-  }
-  if (kind === 'visual') {
-    return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      soft: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-    }
-  }
-  return {
-    shell: 'bg-[#f7f1ea] text-[#261811]',
-    panel: 'border border-[#ddcdbd] bg-[#fffaf4]',
-    soft: 'border border-[#e8dbce] bg-[#f3e8db]',
-    muted: 'text-[#71574a]',
-    action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
-  }
-}
-
 export default function ContactPage() {
   const { recipe } = getFactoryState()
   const productKind = getProductKind(recipe)
-  const tone = getTone(productKind)
   const lanes =
     productKind === 'directory'
       ? [
@@ -72,36 +38,71 @@ export default function ContactPage() {
             ]
 
   return (
-    <div className={`min-h-screen ${tone.shell}`}>
+    <div className="min-h-screen bg-background">
       <NavbarShell />
-      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Contact {SITE_CONFIG.name}</p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em]">A support page that matches the product, not a generic contact form.</h1>
-            <p className={`mt-5 max-w-2xl text-sm leading-8 ${tone.muted}`}>Tell us what you are trying to publish, fix, or launch. We will route it through the right lane instead of forcing every request into the same support bucket.</p>
-            <div className="mt-8 space-y-4">
+      <main className="relative">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-25%,rgba(59,130,246,0.1),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.03),transparent_40%)]"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mb-12 max-w-3xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Contact</p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-blue-950 sm:text-5xl">
+              Talk to {SITE_CONFIG.name}
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              Tell us what you are trying to publish, fix, or launch. We&apos;ll route it through the right lane instead of a generic support bucket.
+            </p>
+          </div>
+
+          <section className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div className="space-y-4">
               {lanes.map((lane) => (
-                <div key={lane.title} className={`rounded-[1.6rem] p-5 ${tone.soft}`}>
-                  <lane.icon className="h-5 w-5" />
-                  <h2 className="mt-3 text-xl font-semibold">{lane.title}</h2>
-                  <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{lane.body}</p>
+                <div
+                  key={lane.title}
+                  className="rounded-[1.75rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_16px_50px_rgba(15,23,42,0.05)] backdrop-blur-sm sm:p-7"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 bg-blue-50/80 text-blue-700">
+                    <lane.icon className="h-5 w-5" />
+                  </div>
+                  <h2 className="mt-4 text-xl font-semibold tracking-tight text-blue-950">{lane.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{lane.body}</p>
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
-            <h2 className="text-2xl font-semibold">Send a message</h2>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Your name" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What do you need help with?" />
-              <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Share the full context so we can respond with the right next step." />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
-            </form>
-          </div>
-        </section>
+            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] lg:p-10">
+              <h2 className="text-xl font-semibold tracking-tight text-blue-950 sm:text-2xl">Send a message</h2>
+              <p className="mt-2 text-sm text-slate-600">We typically reply within two business days.</p>
+              <form className="mt-8 grid gap-5">
+                <div className="grid gap-2">
+                  <Label htmlFor="contact-name">Your name</Label>
+                  <Input id="contact-name" autoComplete="name" placeholder="Alex Morgan" className="h-11" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="contact-email">Email</Label>
+                  <Input id="contact-email" type="email" autoComplete="email" placeholder="you@company.com" className="h-11" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="contact-subject">What do you need help with?</Label>
+                  <Input id="contact-subject" placeholder="Subject or topic" className="h-11" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="contact-body">Message</Label>
+                  <Textarea
+                    id="contact-body"
+                    className="min-h-[160px] resize-y"
+                    placeholder="Share the full context so we can respond with the right next step."
+                  />
+                </div>
+                <Button type="submit" className="h-12 rounded-full text-base shadow-[0_10px_28px_rgba(37,99,235,0.25)]">
+                  Send message
+                </Button>
+              </form>
+            </div>
+          </section>
+        </div>
       </main>
       <Footer />
     </div>

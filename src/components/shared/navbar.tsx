@@ -32,57 +32,57 @@ const taskIcons: Record<TaskKey, any> = {
 
 const variantClasses = {
   'compact-bar': {
-    shell: 'border-b border-slate-200/80 bg-white/88 text-slate-950 backdrop-blur-xl',
-    logo: 'rounded-2xl border border-slate-200 bg-white shadow-sm',
-    active: 'bg-slate-950 text-white',
-    idle: 'text-slate-600 hover:bg-slate-100 hover:text-slate-950',
-    cta: 'rounded-full bg-slate-950 text-white hover:bg-slate-800',
-    mobile: 'border-t border-slate-200/70 bg-white/95',
+    shell: 'border-b border-slate-200/70 bg-white/80 text-blue-950 backdrop-blur-xl supports-[backdrop-filter]:bg-white/70',
+    logo: 'rounded-2xl border border-slate-200/90 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.06)]',
+    active: 'bg-blue-600 text-white shadow-sm',
+    idle: 'text-slate-600 hover:bg-slate-100/90 hover:text-blue-950',
+    cta: 'rounded-full bg-blue-600 text-white shadow-[0_8px_24px_rgba(15,23,42,0.15)] hover:bg-blue-700',
+    mobile: 'border-t border-slate-200/80 bg-white/95 backdrop-blur-md',
   },
   'editorial-bar': {
-    shell: 'border-b border-[#d7c4b3] bg-[#fff7ee]/90 text-[#2f1d16] backdrop-blur-xl',
-    logo: 'rounded-full border border-[#dbc6b6] bg-white shadow-sm',
-    active: 'bg-[#2f1d16] text-[#fff4e4]',
-    idle: 'text-[#72594a] hover:bg-[#f2e5d4] hover:text-[#2f1d16]',
-    cta: 'rounded-full bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
-    mobile: 'border-t border-[#dbc6b6] bg-[#fff7ee]',
+    shell: 'border-b border-slate-200/60 bg-white/75 text-blue-950 backdrop-blur-xl supports-[backdrop-filter]:bg-white/65',
+    logo: 'rounded-2xl border border-slate-200/80 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.06)]',
+    active: 'bg-blue-600 text-white shadow-sm',
+    idle: 'text-slate-600 hover:bg-slate-100/80 hover:text-blue-950',
+    cta: 'rounded-full bg-blue-600 px-5 text-white shadow-[0_10px_28px_rgba(15,23,42,0.14)] hover:bg-blue-700',
+    mobile: 'border-t border-slate-200/70 bg-white/95 backdrop-blur-md',
   },
   'floating-bar': {
-    shell: 'border-b border-transparent bg-transparent text-white',
-    logo: 'rounded-[1.35rem] border border-white/12 bg-white/8 shadow-[0_16px_48px_rgba(15,23,42,0.22)] backdrop-blur',
-    active: 'bg-[#8df0c8] text-[#07111f]',
+    shell: 'border-b border-transparent bg-gradient-to-b from-blue-950/95 to-blue-950/80 text-white backdrop-blur-xl',
+    logo: 'rounded-2xl border border-white/15 bg-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.35)] backdrop-blur-md',
+    active: 'bg-white text-blue-950 shadow-sm',
     idle: 'text-slate-200 hover:bg-white/10 hover:text-white',
-    cta: 'rounded-full bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-    mobile: 'border-t border-white/10 bg-[#09101d]/96',
+    cta: 'rounded-full bg-white px-5 text-blue-950 shadow-lg hover:bg-slate-100',
+    mobile: 'border-t border-white/10 bg-blue-600/98 backdrop-blur-lg',
   },
   'utility-bar': {
-    shell: 'border-b border-[#d7deca] bg-[#f4f6ef]/94 text-[#1f2617] backdrop-blur-xl',
-    logo: 'rounded-xl border border-[#d7deca] bg-white shadow-sm',
-    active: 'bg-[#1f2617] text-[#edf5dc]',
-    idle: 'text-[#56604b] hover:bg-[#e7edd9] hover:text-[#1f2617]',
-    cta: 'rounded-lg bg-[#1f2617] text-[#edf5dc] hover:bg-[#2f3a24]',
-    mobile: 'border-t border-[#d7deca] bg-[#f4f6ef]',
+    shell: 'border-b border-slate-200/70 bg-slate-50/90 text-blue-950 backdrop-blur-xl',
+    logo: 'rounded-xl border border-slate-200/90 bg-white shadow-sm',
+    active: 'bg-blue-600 text-white shadow-sm',
+    idle: 'text-slate-600 hover:bg-white hover:text-blue-950',
+    cta: 'rounded-full bg-blue-600 px-4 text-white shadow-sm hover:bg-blue-700',
+    mobile: 'border-t border-slate-200/80 bg-slate-50/95',
   },
 } as const
 
 const directoryPalette = {
   'directory-clean': {
-    shell: 'border-b border-slate-200 bg-white/94 text-slate-950 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-xl',
-    logo: 'rounded-2xl border border-slate-200 bg-slate-50',
-    nav: 'text-slate-600 hover:text-slate-950',
-    search: 'border border-slate-200 bg-slate-50 text-slate-600',
-    cta: 'bg-slate-950 text-white hover:bg-slate-800',
-    post: 'border border-slate-200 bg-white text-slate-950 hover:bg-slate-50',
-    mobile: 'border-t border-slate-200 bg-white',
+    shell: 'border-b border-slate-200/70 bg-white/80 text-blue-950 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/70',
+    logo: 'rounded-2xl border border-slate-200/90 bg-white shadow-[0_8px_28px_rgba(15,23,42,0.05)]',
+    nav: 'text-slate-600 hover:text-blue-950',
+    search: 'border border-slate-200/90 bg-slate-50/80 text-slate-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]',
+    cta: 'rounded-full bg-blue-600 text-white shadow-[0_8px_24px_rgba(15,23,42,0.12)] hover:bg-blue-700',
+    post: 'border border-slate-200/90 bg-white text-blue-950 hover:bg-slate-50',
+    mobile: 'border-t border-slate-200/80 bg-white/95 backdrop-blur-md',
   },
   'market-utility': {
-    shell: 'border-b border-[#d7deca] bg-[#f4f6ef]/96 text-[#1f2617] shadow-[0_1px_0_rgba(64,76,34,0.06)] backdrop-blur-xl',
-    logo: 'rounded-xl border border-[#d7deca] bg-white',
-    nav: 'text-[#56604b] hover:text-[#1f2617]',
-    search: 'border border-[#d7deca] bg-white text-[#56604b]',
-    cta: 'bg-[#1f2617] text-[#edf5dc] hover:bg-[#2f3a24]',
-    post: 'border border-[#d7deca] bg-white text-[#1f2617] hover:bg-[#eef2e4]',
-    mobile: 'border-t border-[#d7deca] bg-[#f4f6ef]',
+    shell: 'border-b border-emerald-200/50 bg-emerald-50/85 text-blue-950 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-xl',
+    logo: 'rounded-xl border border-emerald-200/70 bg-white shadow-sm',
+    nav: 'text-slate-600 hover:text-blue-950',
+    search: 'border border-emerald-200/70 bg-white/90 text-slate-600',
+    cta: 'rounded-full bg-blue-600 text-white shadow-sm hover:bg-blue-700',
+    post: 'border border-emerald-200/60 bg-white text-blue-950 hover:bg-emerald-50/50',
+    mobile: 'border-t border-emerald-200/60 bg-emerald-50/95',
   },
 } as const
 
@@ -216,16 +216,16 @@ export function Navbar() {
 
           {isEditorial ? (
             <div className="hidden min-w-0 flex-1 items-center gap-4 xl:flex">
-              <div className="h-px flex-1 bg-[#d8c8bb]" />
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-200 to-slate-200" />
               {primaryNavigation.map((task) => {
                 const isActive = pathname.startsWith(task.route)
                 return (
-                  <Link key={task.key} href={task.route} className={cn('text-sm font-semibold uppercase tracking-[0.18em] transition-colors', isActive ? 'text-[#2f1d16]' : 'text-[#7b6254] hover:text-[#2f1d16]')}>
+                  <Link key={task.key} href={task.route} className={cn('rounded-full px-3 py-1.5 text-sm font-semibold tracking-tight transition-colors', isActive ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-blue-950')}>
                     {task.label}
                   </Link>
                 )
               })}
-              <div className="h-px flex-1 bg-[#d8c8bb]" />
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-slate-200 to-slate-200" />
             </div>
           ) : isFloating ? (
             <div className="hidden min-w-0 flex-1 items-center gap-2 xl:flex">
@@ -290,7 +290,7 @@ export function Navbar() {
                 <Link href="/login">Sign In</Link>
               </Button>
               <Button size="sm" asChild className={style.cta}>
-                <Link href="/register">{isEditorial ? 'Subscribe' : isUtility ? 'Post Now' : 'Get Started'}</Link>
+                <Link href="/register">{isEditorial ? 'Get started' : isUtility ? 'Post now' : 'Get started'}</Link>
               </Button>
             </div>
           )}

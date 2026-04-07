@@ -55,28 +55,28 @@ const getImageUrl = (post: SitePost, content: ListingContent) => {
 
 const cardStyles = {
   'listing-elevated': {
-    frame: 'rounded-[1.9rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_28px_75px_rgba(15,23,42,0.14)]',
+    frame: 'rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(15,23,42,0.12)]',
     muted: 'text-slate-600',
-    title: 'text-slate-950',
-    badge: 'bg-slate-950 text-white',
+    title: 'text-blue-950',
+    badge: 'bg-blue-600 text-white',
   },
   'editorial-feature': {
-    frame: 'rounded-[1.8rem] border border-[rgba(125,83,45,0.12)] bg-[#fffaf3] shadow-[0_18px_55px_rgba(89,52,24,0.1)] hover:-translate-y-1 hover:shadow-[0_26px_75px_rgba(89,52,24,0.14)]',
-    muted: 'text-[#71584b]',
-    title: 'text-[#2b1d17]',
-    badge: 'bg-[#2b1d17] text-[#fff3df]',
+    frame: 'rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_18px_55px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:border-blue-200/60 hover:shadow-[0_26px_75px_rgba(59,130,246,0.1)]',
+    muted: 'text-slate-600',
+    title: 'text-blue-950',
+    badge: 'bg-blue-600 text-white',
   },
   'studio-panel': {
-    frame: 'rounded-[1.9rem] border border-white/10 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(12,23,43,0.96))] text-white shadow-[0_24px_80px_rgba(15,23,42,0.35)] hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,23,42,0.42)]',
-    muted: 'text-slate-300',
+    frame: 'rounded-[1.75rem] border border-white/10 bg-gradient-to-b from-blue-900/95 to-blue-950 text-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_32px_90px_rgba(0,0,0,0.45)]',
+    muted: 'text-slate-400',
     title: 'text-white',
-    badge: 'bg-[#8df0c8] text-[#07111f]',
+    badge: 'bg-white text-blue-950',
   },
   'catalog-grid': {
-    frame: 'rounded-[1.8rem] border border-[rgba(67,78,41,0.14)] bg-[#f8faf1] shadow-[0_18px_58px_rgba(55,65,31,0.1)] hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(55,65,31,0.14)]',
-    muted: 'text-[#5b664c]',
-    title: 'text-[#1f2617]',
-    badge: 'bg-[#1f2617] text-[#edf5dc]',
+    frame: 'rounded-[1.75rem] border border-slate-200/70 bg-slate-50/90 shadow-[0_18px_50px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_24px_70px_rgba(15,23,42,0.09)]',
+    muted: 'text-slate-600',
+    title: 'text-blue-950',
+    badge: 'bg-blue-600 text-white',
   },
 } as const
 
@@ -112,18 +112,18 @@ export function TaskPostCard({
   if (isDirectorySurface) {
     const cardTone = recipe.brandPack === 'market-utility'
       ? {
-          frame: 'rounded-[1.75rem] border border-[#d7deca] bg-white shadow-[0_18px_44px_rgba(64,76,34,0.08)] hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(64,76,34,0.14)]',
-          badge: 'bg-[#1f2617] text-[#edf5dc]',
-          muted: 'text-[#5b664c]',
-          title: 'text-[#1f2617]',
-          cta: 'text-[#1f2617]',
+          frame: 'rounded-[1.75rem] border border-emerald-200/60 bg-white shadow-[0_18px_44px_rgba(30,64,175,0.08)] hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(30,64,175,0.12)]',
+          badge: 'bg-blue-700 text-white',
+          muted: 'text-slate-600',
+          title: 'text-blue-950',
+          cta: 'text-blue-700',
         }
       : {
           frame: 'rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_18px_44px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(15,23,42,0.14)]',
-          badge: 'bg-slate-950 text-white',
+          badge: 'bg-blue-600 text-white',
           muted: 'text-slate-600',
-          title: 'text-slate-950',
-          cta: 'text-slate-950',
+          title: 'text-blue-950',
+          cta: 'text-blue-950',
         }
 
     return (
@@ -135,7 +135,7 @@ export function TaskPostCard({
               <Tag className="h-3.5 w-3.5" />
               {category}
             </span>
-            <span className="rounded-full bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+            <span className="rounded-full bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-950">
               {variant === 'classified' ? 'Open now' : 'Verified'}
             </span>
           </div>
@@ -187,7 +187,7 @@ export function TaskPostCard({
           <Tag className="h-3.5 w-3.5" />
           {category}
         </span>
-        {variant === 'pdf' && <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/88 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-950 shadow"><FileText className="h-3.5 w-3.5" />PDF</span>}
+        {variant === 'pdf' && <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/88 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-950 shadow"><FileText className="h-3.5 w-3.5" />PDF</span>}
       </div>
       <div className={`flex flex-1 flex-col p-5 ${compact ? 'py-4' : ''}`}>
         <h3 className={`line-clamp-2 font-semibold leading-snug ${variant === 'article' ? 'text-[1.35rem]' : 'text-lg'} ${visualVariant.title}`}>{post.title}</h3>

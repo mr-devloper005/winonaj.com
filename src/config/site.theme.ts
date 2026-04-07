@@ -9,7 +9,7 @@ export const SITE_THEME = defineSiteTheme({
   home: {
     layout: 'editorial-rhythm',
     primaryTask: 'article',
-    featuredTaskKeys: ['article', 'profile', 'image'],
+    featuredTaskKeys: ['article'],
   },
   navigation: {
     variant: 'editorial',

@@ -8,22 +8,22 @@ import { mockTeamMembers } from "@/data/mock-data";
 import { SITE_CONFIG } from "@/lib/site-config";
 
 const highlights = [
-  { label: "Creators onboarded", value: "12k+" },
-  { label: "Bookmarks shared", value: "180k" },
-  { label: "Listings published", value: "8.6k" },
+  { label: "Articles published", value: "12k+" },
+  { label: "Monthly readers", value: "180k" },
+  { label: "Contributing writers", value: "8.6k" },
 ];
 
 const values = [
-  { title: "Curated by people", description: "We believe trusted recommendations beat endless feeds." },
-  { title: "Designed for focus", description: "Clear, calm UI helps you find the next best resource fast." },
-  { title: "Built to share", description: "Collections make collaboration and knowledge flow effortless." },
+  { title: "Reading first", description: "Long-form work deserves space, typography, and pacing that respect the reader." },
+  { title: "Designed for focus", description: "A calm layout keeps attention on ideas—not notifications and noise." },
+  { title: "Built to last", description: "Stories stay easy to find, revisit, and share with the people who need them." },
 ];
 
 export default function AboutPage() {
   return (
     <PageShell
       title={`About ${SITE_CONFIG.name}`}
-      description={`${SITE_CONFIG.name} is a modern platform for creators, communities, and curated business discovery.`}
+      description={`${SITE_CONFIG.name} is a publication for articles, essays, and guides—built for readers who want depth and clarity.`}
       actions={
         <>
           <Button variant="outline" asChild>
@@ -40,11 +40,11 @@ export default function AboutPage() {
           <CardContent className="space-y-4 p-6">
             <Badge variant="secondary">Our Story</Badge>
             <h2 className="text-2xl font-semibold text-foreground">
-              A single home for knowledge, discovery, and community.
+              A single home for thoughtful writing and long-form reading.
             </h2>
             <p className="text-sm text-muted-foreground">
-              {SITE_CONFIG.name} brings together publishing, listings, and social bookmarking so teams can move faster
-              and keep their best resources close.
+              {SITE_CONFIG.name} is organized around articles and editorial content—so writers can publish with clarity
+              and readers can explore without distraction.
             </p>
             <div className="grid gap-4 sm:grid-cols-3">
               {highlights.map((item) => (

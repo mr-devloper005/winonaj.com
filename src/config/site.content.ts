@@ -5,66 +5,66 @@ export const siteContent = {
     tagline: 'Independent reading platform',
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
+    tagline: 'Articles, essays, and long-form reading',
   },
   hero: {
-    badge: 'Latest stories and visuals',
-    title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
+    badge: 'Latest articles',
+    title: ['A thoughtful home for', 'stories and long-form reading.'],
     description:
-      'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      'Explore fresh articles, essays, and guides through a calmer, clearer reading experience.',
     primaryCta: {
-      label: 'Read latest stories',
+      label: 'Read latest articles',
       href: '/articles',
     },
     secondaryCta: {
-      label: 'Explore visuals',
-      href: '/image-sharing',
+      label: 'About',
+      href: '/about',
     },
-    searchPlaceholder: 'Search stories, visuals, listings, and more',
+    searchPlaceholder: 'Search articles…',
     focusLabel: 'Focus',
     featureCardBadge: 'latest cover rotation',
     featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
     featureCardDescription:
-      'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      'Recent writing stays at the center of the experience—focused on reading, not noise.',
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Articles and long-form reading',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Read articles, essays, and guides in a cleaner, publication-style experience.',
+      openGraphTitle: 'Articles and long-form reading',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Discover thoughtful articles and long-form posts through a calmer reading-first experience.',
+      keywords: ['articles', 'essays', 'long-form', 'publishing', 'reading'],
     },
-    introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introBadge: 'About the publication',
+    introTitle: 'Built for readers who want depth, clarity, and room to think.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'This site is organized around article-style reading: explainers, essays, guides, and stories that deserve more than a quick scroll.',
+      'Navigation stays simple so you can focus on the writing—browse topics, open what matters, and move between pieces without clutter.',
+      'Whether you are catching up on the latest post or revisiting a favorite piece, the layout keeps typography and pacing front and center.',
     ],
     sideBadge: 'At a glance',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Reading-first layout with strong typographic hierarchy.',
+      'Editorial pacing—fewer boxes, more room for ideas.',
+      'Search and discovery tuned for articles and topics.',
+      'Fast, lightweight pages that stay out of the way of the text.',
     ],
     primaryLink: {
       label: 'Browse articles',
       href: '/articles',
     },
     secondaryLink: {
-      label: 'See visuals',
-      href: '/image-sharing',
+      label: 'Contact',
+      href: '/contact',
     },
   },
   cta: {
     badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    title: 'Read, save, and return to the stories that matter to you.',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'One publication surface for articles and long-form posts—clear navigation, calm layout, and writing that leads the experience.',
     primaryCta: {
       label: 'Get Started Free',
       href: '/register',
@@ -130,13 +130,13 @@ export const taskIntroCopy: Record<
     title: 'Articles, stories, and long-form reading',
     paragraphs: [
       'This section is built for stories, explainers, guides, and long-form reading across topics and interests.',
-      'Articles connect with listings, images, resources, and other content types so deeper reading can lead naturally into related discovery.',
-      'Use this section to browse thoughtful posts, revisit useful writing, and move into supporting content when you want more context.',
+      'Every piece is meant to be read slowly: clear structure, generous spacing, and typography that supports longer attention.',
+      'Browse by topic, revisit favorites, and use search when you know what you are looking for.',
     ],
     links: [
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open image sharing', href: '/image-sharing' },
-      { label: 'Browse resources', href: '/pdf' },
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Home', href: '/' },
     ],
   },
   classified: {

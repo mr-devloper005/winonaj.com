@@ -24,12 +24,12 @@ const taskIcons: Record<TaskKey, any> = {
 }
 
 const variantShells = {
-  'listing-directory': 'bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.08),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]',
+  'listing-directory': 'bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.09),transparent_28%),linear-gradient(180deg,#fafcff_0%,#ffffff_52%,#f8fafc_100%)]',
   'listing-showcase': 'bg-[linear-gradient(180deg,#ffffff_0%,#f4f9ff_100%)]',
-  'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.08),transparent_20%),linear-gradient(180deg,#fff8ef_0%,#ffffff_100%)]',
-  'article-journal': 'bg-[linear-gradient(180deg,#fffdf9_0%,#f7f1ea_100%)]',
+  'article-editorial': 'bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(59,130,246,0.08),transparent_50%),linear-gradient(180deg,#fbfcff_0%,#ffffff_45%,#f8fafc_100%)]',
+  'article-journal': 'bg-[linear-gradient(180deg,#ffffff_0%,#f1f5f9_100%)]',
   'image-masonry': 'bg-[linear-gradient(180deg,#09101d_0%,#111c2f_100%)] text-white',
-  'image-portfolio': 'bg-[linear-gradient(180deg,#07111f_0%,#13203a_100%)] text-white',
+  'image-portfolio': 'bg-[linear-gradient(180deg,#172554_0%,#1e3a8a_100%)] text-white',
   'profile-creator': 'bg-[linear-gradient(180deg,#0a1120_0%,#101c34_100%)] text-white',
   'profile-business': 'bg-[linear-gradient(180deg,#f6fbff_0%,#ffffff_100%)]',
   'classified-bulletin': 'bg-[linear-gradient(180deg,#edf3e4_0%,#ffffff_100%)]',
@@ -62,22 +62,22 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         panel: 'border border-white/10 bg-white/6',
         soft: 'border border-white/10 bg-white/5',
         input: 'border-white/10 bg-white/6 text-white',
-        button: 'bg-white text-slate-950 hover:bg-slate-200',
+        button: 'bg-white text-blue-950 hover:bg-slate-200',
       }
     : layoutKey.startsWith('article') || layoutKey.startsWith('sbm')
       ? {
-          muted: 'text-[#72594a]',
-          panel: 'border border-[#dbc6b6] bg-white/90',
-          soft: 'border border-[#dbc6b6] bg-[#fff8ef]',
-          input: 'border border-[#dbc6b6] bg-white text-[#2f1d16]',
-          button: 'bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
+          muted: 'text-slate-600',
+          panel: 'border border-slate-200/80 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.06)]',
+          soft: 'border border-slate-200/70 bg-slate-50/90',
+          input: 'rounded-xl border border-slate-200/90 bg-white text-blue-950 shadow-sm',
+          button: 'rounded-full bg-blue-600 text-white shadow-[0_10px_28px_rgba(15,23,42,0.12)] hover:bg-blue-700',
         }
       : {
           muted: 'text-slate-600',
-          panel: 'border border-slate-200 bg-white',
-          soft: 'border border-slate-200 bg-slate-50',
-          input: 'border border-slate-200 bg-white text-slate-950',
-          button: 'bg-slate-950 text-white hover:bg-slate-800',
+          panel: 'border border-slate-200/80 bg-white shadow-[0_16px_50px_rgba(15,23,42,0.05)]',
+          soft: 'border border-slate-200/70 bg-slate-50/90',
+          input: 'rounded-xl border border-slate-200/90 bg-white text-blue-950',
+          button: 'rounded-full bg-blue-600 text-white shadow-sm hover:bg-blue-700',
         }
 
   return (

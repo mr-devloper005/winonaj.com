@@ -52,18 +52,7 @@ export const SITE_CONFIG: SiteConfig = {
     title: `${siteIdentity.name} - ${siteIdentity.tagline}`,
     titleTemplate: `%s | ${siteIdentity.name}`,
     description: siteIdentity.description,
-    keywords: [
-      'articles',
-      'business listings',
-      'classifieds',
-      'profiles',
-      'image sharing',
-      'social bookmarking',
-      'pdf library',
-      'content discovery',
-      'visual stories',
-      siteIdentity.name,
-    ],
+    keywords: ['articles', 'long-form', 'publishing', 'essays', 'guides', 'reading', 'editorial', siteIdentity.name],
   },
 }
 

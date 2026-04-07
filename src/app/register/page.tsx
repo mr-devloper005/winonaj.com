@@ -2,55 +2,38 @@ import Link from 'next/link'
 import { Bookmark, Building2, FileText, Image as ImageIcon, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 
 function getRegisterConfig(kind: ReturnType<typeof getProductKind>) {
   if (kind === 'directory') {
     return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      side: 'border border-slate-200 bg-slate-50',
-      muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
       icon: Building2,
       title: 'Create a business-ready account',
-      body: 'List services, manage locations, and activate trust signals with a proper directory workflow.',
+      body: 'List services, manage locations, and activate trust signals with a directory workflow.',
     }
   }
   if (kind === 'editorial') {
     return {
-      shell: 'bg-[#fbf6ee] text-[#241711]',
-      panel: 'border border-[#dcc8b7] bg-[#fffdfa]',
-      side: 'border border-[#e6d6c8] bg-[#fff4e8]',
-      muted: 'text-[#6e5547]',
-      action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
       icon: FileText,
       title: 'Start your contributor workspace',
-      body: 'Create a profile for essays, issue drafts, editorial review, and publication scheduling.',
+      body: 'Set up a profile for drafts, review, and publication scheduling.',
     }
   }
   if (kind === 'visual') {
     return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      side: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
       icon: ImageIcon,
       title: 'Set up your creator profile',
-      body: 'Launch a visual-first account with gallery publishing, identity surfaces, and profile-led discovery.',
+      body: 'Launch a visual-first account with gallery publishing and profile-led discovery.',
     }
   }
   return {
-    shell: 'bg-[#f7f1ea] text-[#261811]',
-    panel: 'border border-[#ddcdbd] bg-[#fffaf4]',
-    side: 'border border-[#e8dbce] bg-[#f3e8db]',
-    muted: 'text-[#71574a]',
-    action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
     icon: Bookmark,
     title: 'Create a curator account',
-    body: 'Build shelves, save references, and connect collections to your profile without a generic feed setup.',
+    body: 'Build shelves, save references, and connect collections to your profile.',
   }
 }
 
@@ -61,39 +44,77 @@ export default function RegisterPage() {
   const Icon = config.icon
 
   return (
-    <div className={`min-h-screen ${config.shell}`}>
+    <div className="min-h-screen bg-background">
       <NavbarShell />
-      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-          <div className={`rounded-[2rem] p-8 ${config.side}`}>
-            <Icon className="h-8 w-8" />
-            <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{config.title}</h1>
-            <p className={`mt-5 text-sm leading-8 ${config.muted}`}>{config.body}</p>
-            <div className="mt-8 grid gap-4">
-              {['Different onboarding per product family', 'No repeated one-size-fits-all shell', 'Profile, publishing, and discovery aligned'].map((item) => (
-                <div key={item} className="rounded-[1.5rem] border border-current/10 px-4 py-4 text-sm">{item}</div>
-              ))}
-            </div>
+      <main className="relative">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-25%,rgba(59,130,246,0.1),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.03),transparent_40%)]"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Account</p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-blue-950 sm:text-5xl">Create account</h1>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              Join in a few steps — you can refine your profile after signing up.
+            </p>
           </div>
 
-          <div className={`rounded-[2rem] p-8 ${config.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Create account</p>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Full name" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Password" type="password" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What are you creating or publishing?" />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action}`}>Create account</button>
-            </form>
-            <div className={`mt-6 flex items-center justify-between text-sm ${config.muted}`}>
-              <span>Already have an account?</span>
-              <Link href="/login" className="inline-flex items-center gap-2 font-semibold hover:underline">
-                <Sparkles className="h-4 w-4" />
-                Sign in
-              </Link>
+          <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+            <div className="flex flex-col rounded-[1.75rem] border border-slate-200/80 bg-white/90 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.07)] backdrop-blur-sm lg:p-10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50/80 text-blue-700">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-blue-950 sm:text-3xl">{config.title}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">{config.body}</p>
+              <div className="mt-8 grid gap-3">
+                {['Onboarding aligned with this site', 'No one-size-fits-all shell', 'Publishing and discovery in sync'].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-slate-200/70 bg-slate-50/50 px-4 py-3.5 text-sm font-medium text-slate-700"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+
+            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] lg:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Your details</p>
+              <form className="mt-6 grid gap-5">
+                <div className="grid gap-2">
+                  <Label htmlFor="register-name">Full name</Label>
+                  <Input id="register-name" autoComplete="name" placeholder="Alex Morgan" className="h-11" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="register-email">Email</Label>
+                  <Input id="register-email" type="email" autoComplete="email" placeholder="you@company.com" className="h-11" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="register-password">Password</Label>
+                  <Input id="register-password" type="password" autoComplete="new-password" placeholder="••••••••" className="h-11" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="register-intent">What are you creating or publishing?</Label>
+                  <Input id="register-intent" placeholder="e.g. essays, news, analysis" className="h-11" />
+                </div>
+                <Button type="submit" className="mt-2 h-12 rounded-full text-base shadow-[0_10px_28px_rgba(37,99,235,0.25)]">
+                  Create account
+                </Button>
+              </form>
+              <div className="mt-8 flex flex-col gap-2 border-t border-slate-200/80 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
+                <span className="text-slate-600">Already have an account?</span>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center justify-center gap-2 font-semibold text-blue-600 transition hover:text-blue-700"
+                >
+                  <Sparkles className="h-4 w-4" />
+                  Sign in
+                </Link>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
       <Footer />
     </div>

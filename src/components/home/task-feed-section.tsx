@@ -20,7 +20,7 @@ const taskIcons: Record<string, typeof Building2> = {
 const sectionStyles = {
   directory: {
     section: 'py-14 sm:py-16',
-    heading: 'text-slate-950',
+    heading: 'text-blue-950',
     body: 'text-slate-600',
     card: 'border-b border-slate-200 pb-6',
   },
@@ -32,7 +32,7 @@ const sectionStyles = {
   },
   studio: {
     section: 'py-16 sm:py-18',
-    heading: 'text-slate-950',
+    heading: 'text-blue-950',
     body: 'text-slate-600',
     card: 'border-b border-slate-200 pb-6',
   },

@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'winonaj',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Winonaj',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Business listing platform',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Independent reading & publishing',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A listing-first business discovery platform for browsing services, businesses, spaces, and location-based opportunities through a cleaner browsing experience.',
+    'An article-first publication for long-form stories, analysis, and guides—designed for calm reading and clear discovery.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'winonaj.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://winonaj.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',

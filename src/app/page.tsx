@@ -74,66 +74,66 @@ function getPostMeta(post?: SitePost | null) {
 function getDirectoryTone(brandPack: string) {
   if (brandPack === 'market-utility') {
     return {
-      shell: 'bg-[#f5f7f1] text-[#1f2617]',
-      hero: 'bg-[linear-gradient(180deg,#eef4e4_0%,#f8faf4_100%)]',
-      panel: 'border border-[#d5ddc8] bg-white shadow-[0_24px_64px_rgba(64,76,34,0.08)]',
-      soft: 'border border-[#d5ddc8] bg-[#eff3e7]',
-      muted: 'text-[#5b664c]',
-      title: 'text-[#1f2617]',
-      badge: 'bg-[#1f2617] text-[#edf5dc]',
-      action: 'bg-[#1f2617] text-[#edf5dc] hover:bg-[#2f3a24]',
-      actionAlt: 'border border-[#d5ddc8] bg-white text-[#1f2617] hover:bg-[#eef3e7]',
+      shell: 'bg-[#f0f7ff] text-blue-950',
+      hero: 'bg-[linear-gradient(180deg,#e8f1ff_0%,#f8fbff_100%)]',
+      panel: 'border border-blue-200/60 bg-white shadow-[0_24px_64px_rgba(30,64,175,0.08)]',
+      soft: 'border border-blue-200/50 bg-blue-50/80',
+      muted: 'text-slate-600',
+      title: 'text-blue-950',
+      badge: 'bg-blue-700 text-white',
+      action: 'bg-blue-600 text-white hover:bg-blue-700',
+      actionAlt: 'border border-blue-200/70 bg-white text-blue-950 hover:bg-blue-50/80',
     }
   }
   return {
-    shell: 'bg-[#f8fbff] text-slate-950',
-    hero: 'bg-[linear-gradient(180deg,#eef6ff_0%,#ffffff_100%)]',
-    panel: 'border border-slate-200 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.08)]',
-    soft: 'border border-slate-200 bg-slate-50',
+    shell: 'bg-transparent text-blue-950',
+    hero: 'bg-[linear-gradient(180deg,rgba(239,246,255,0.95)_0%,#ffffff_55%,rgba(248,250,252,0.98)_100%)]',
+    panel: 'border border-slate-200/80 bg-white shadow-[0_28px_90px_rgba(15,23,42,0.08)]',
+    soft: 'border border-slate-200/70 bg-slate-50/90',
     muted: 'text-slate-600',
-    title: 'text-slate-950',
-    badge: 'bg-slate-950 text-white',
-    action: 'bg-slate-950 text-white hover:bg-slate-800',
-    actionAlt: 'border border-slate-200 bg-white text-slate-950 hover:bg-slate-100',
+    title: 'text-blue-950',
+    badge: 'bg-blue-600 text-white shadow-sm',
+    action: 'rounded-full bg-blue-600 text-white shadow-[0_12px_36px_rgba(15,23,42,0.15)] hover:bg-blue-700',
+    actionAlt: 'rounded-full border border-slate-200/90 bg-white text-blue-950 shadow-sm hover:bg-slate-50',
   }
 }
 
 function getEditorialTone() {
   return {
-    shell: 'bg-[#fbf6ee] text-[#241711]',
-    panel: 'border border-[#dcc8b7] bg-[#fffdfa] shadow-[0_24px_60px_rgba(77,47,27,0.08)]',
-    soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
-    muted: 'text-[#6e5547]',
-    title: 'text-[#241711]',
-    badge: 'bg-[#241711] text-[#fff1e2]',
-    action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-    actionAlt: 'border border-[#dcc8b7] bg-transparent text-[#241711] hover:bg-[#f5e7d7]',
+    shell: 'bg-transparent text-blue-950',
+    panel: 'border border-slate-200/80 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.07)]',
+    soft: 'border border-slate-200/70 bg-slate-50/90',
+    muted: 'text-slate-600',
+    title: 'text-blue-950',
+    badge: 'bg-blue-600 text-white shadow-sm',
+    action: 'bg-blue-600 text-white shadow-[0_12px_36px_rgba(15,23,42,0.18)] hover:bg-blue-700',
+    actionAlt: 'border border-slate-200/90 bg-white text-blue-950 shadow-sm hover:bg-slate-50',
   }
 }
 
 function getVisualTone() {
   return {
-    shell: 'bg-[#07101f] text-white',
-    panel: 'border border-white/10 bg-[rgba(11,18,31,0.78)] shadow-[0_28px_80px_rgba(0,0,0,0.35)]',
-    soft: 'border border-white/10 bg-white/6',
-    muted: 'text-slate-300',
+    shell: 'bg-blue-950 text-white',
+    panel: 'border border-white/10 bg-white/[0.06] shadow-[0_32px_100px_rgba(0,0,0,0.45)] backdrop-blur-md',
+    soft: 'border border-white/10 bg-white/[0.05]',
+    muted: 'text-slate-400',
     title: 'text-white',
-    badge: 'bg-[#8df0c8] text-[#07111f]',
-    action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-    actionAlt: 'border border-white/10 bg-white/6 text-white hover:bg-white/10',
+    badge: 'bg-white text-blue-950 shadow-md',
+    action: 'bg-white text-blue-950 shadow-lg hover:bg-slate-100',
+    actionAlt: 'border border-white/15 bg-white/10 text-white backdrop-blur-sm hover:bg-white/15',
   }
 }
 
 function getCurationTone() {
   return {
-    shell: 'bg-[#f7f1ea] text-[#261811]',
-    panel: 'border border-[#ddcdbd] bg-[#fffaf4] shadow-[0_24px_60px_rgba(91,56,37,0.08)]',
-    soft: 'border border-[#e8dbce] bg-[#f3e8db]',
-    muted: 'text-[#71574a]',
-    title: 'text-[#261811]',
-    badge: 'bg-[#5b2b3b] text-[#fff0f5]',
-    action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
-    actionAlt: 'border border-[#ddcdbd] bg-transparent text-[#261811] hover:bg-[#efe3d6]',
+    shell: 'bg-transparent text-blue-950',
+    panel: 'border border-slate-200/80 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.07)]',
+    soft: 'border border-slate-200/70 bg-slate-50/90',
+    muted: 'text-slate-600',
+    title: 'text-blue-950',
+    badge: 'bg-blue-700 text-white shadow-sm',
+    action: 'bg-blue-600 text-white shadow-lg hover:bg-blue-700',
+    actionAlt: 'border border-slate-200/90 bg-white text-blue-950 shadow-sm hover:bg-slate-50',
   }
 }
 
@@ -274,53 +274,72 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
 
   return (
     <main className={tone.shell}>
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+      <section className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-25%,rgba(59,130,246,0.11),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.04),transparent_40%)]"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="grid gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:items-start">
           <div>
-            <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>
+            <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone.badge}`}>
               <FileText className="h-3.5 w-3.5" />
               Reading-first publication
             </span>
-            <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
+            <h1 className={`mt-7 max-w-[22ch] text-5xl font-semibold leading-[1.05] tracking-[-0.055em] sm:text-6xl lg:text-[3.5rem] ${tone.title}`}>
               Essays, analysis, and slower reading designed like a publication, not a dashboard.
             </h1>
-            <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={primaryTask?.route || '/articles'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
+            <p className={`mt-8 max-w-2xl text-lg leading-relaxed ${tone.muted}`}>{SITE_CONFIG.description}</p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href={primaryTask?.route || '/articles'} className={`inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 ${tone.action}`}>
                 Start reading
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/about" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
+              <Link href="/about" className={`inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 ${tone.actionAlt}`}>
                 About the publication
               </Link>
             </div>
           </div>
 
-          <aside className={`rounded-[2rem] p-6 ${tone.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Inside this issue</p>
-            <div className="mt-5 space-y-5">
+          <aside className={`relative overflow-hidden rounded-[1.75rem] p-7 ${tone.panel} before:pointer-events-none before:absolute before:inset-0 before:rounded-[1.75rem] before:bg-gradient-to-br before:from-blue-500/[0.07] before:via-transparent before:to-blue-950/[0.03] before:content-['']`}>
+            <p className="relative text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Inside this issue</p>
+            <div className="relative mt-6 space-y-5">
               {side.map((post) => (
-                <Link key={post.id} href={`/articles/${post.slug}`} className="block border-b border-black/10 pb-5 last:border-b-0 last:pb-0">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-60">Feature</p>
-                  <h3 className="mt-2 text-xl font-semibold">{post.title}</h3>
+                <Link key={post.id} href={`/articles/${post.slug}`} className="group block border-b border-slate-200/80 pb-5 transition last:border-b-0 last:pb-0 hover:opacity-90">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Feature</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-blue-950 group-hover:text-blue-600">{post.title}</h3>
                   <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Long-form perspective with a calmer reading rhythm.'}</p>
                 </Link>
               ))}
             </div>
           </aside>
         </div>
+        </div>
+      </section>
 
+      <section className="border-y border-slate-200/70 bg-white/70 py-10 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500">Trusted by teams shipping on the web</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-14 gap-y-6 opacity-50 grayscale">
+            {['Northwind', 'Brightlane', 'Atlas', 'Mercantile', 'Studio 41'].map((name) => (
+              <span key={name} className="text-sm font-semibold tracking-tight text-slate-800">{name}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         {lead ? (
-          <div className={`mt-12 overflow-hidden rounded-[2.5rem] ${tone.panel}`}>
+          <div className={`overflow-hidden rounded-[1.75rem] ${tone.panel}`}>
             <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="relative min-h-[360px] overflow-hidden">
-                <ContentImage src={getPostImage(lead)} alt={lead.title} fill className="object-cover" />
+              <div className="relative min-h-[320px] overflow-hidden lg:min-h-[400px]">
+                <ContentImage src={getPostImage(lead)} alt={lead.title} fill className="object-cover transition duration-700 hover:scale-[1.02]" />
               </div>
-              <div className="p-8 lg:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Lead story</p>
-                <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em]">{lead.title}</h2>
-                <p className={`mt-4 text-sm leading-8 ${tone.muted}`}>{lead.summary || 'A more deliberate lead story surface with room for a proper narrative setup.'}</p>
-                <Link href={`/articles/${lead.slug}`} className={`mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
+              <div className="flex flex-col justify-center p-8 lg:p-12">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Lead story</p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{lead.title}</h2>
+                <p className={`mt-5 text-base leading-relaxed ${tone.muted}`}>{lead.summary || 'A more deliberate lead story surface with room for a proper narrative setup.'}</p>
+                <Link href={`/articles/${lead.slug}`} className={`mt-10 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 ${tone.action}`}>
                   Read article
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -329,14 +348,16 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
           </div>
         ) : null}
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {supportTasks.slice(0, 3).map((task) => (
-            <Link key={task.key} href={task.route} className={`rounded-[1.8rem] p-6 ${tone.soft}`}>
-              <h3 className="text-xl font-semibold">{task.label}</h3>
-              <p className={`mt-3 text-sm leading-7 ${tone.muted}`}>{task.description}</p>
-            </Link>
-          ))}
-        </div>
+        {supportTasks.length > 0 ? (
+          <div className={`grid gap-5 md:grid-cols-3 ${lead ? 'mt-14' : ''}`}>
+            {supportTasks.slice(0, 3).map((task) => (
+              <Link key={task.key} href={task.route} className={`group rounded-[1.5rem] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)] ${tone.soft}`}>
+                <h3 className="text-xl font-semibold tracking-tight text-blue-950 group-hover:text-blue-600">{task.label}</h3>
+                <p className={`mt-4 text-sm leading-relaxed ${tone.muted}`}>{task.description}</p>
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </section>
     </main>
   )

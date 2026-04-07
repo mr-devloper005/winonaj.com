@@ -46,10 +46,10 @@ export function DirectoryTaskDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fbff] text-slate-950">
+    <div className="min-h-screen bg-[#f8fbff] text-blue-950">
       <SchemaJsonLd data={schemaPayload} />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <Link href={taskRoute} className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-950">
+        <Link href={taskRoute} className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-950">
           ← Back to {taskLabel}
         </Link>
 
@@ -93,7 +93,7 @@ export function DirectoryTaskDetailPage({
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{category || taskLabel}</p>
                   <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em]">{post.title}</h1>
                 </div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                <span className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                   <ShieldCheck className="h-3.5 w-3.5" /> Verified
                 </span>
               </div>
@@ -106,8 +106,8 @@ export function DirectoryTaskDetailPage({
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                {website ? <a href={website} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800">Visit website <ArrowRight className="h-4 w-4" /></a> : null}
-                <Link href={taskRoute} className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100">Browse more</Link>
+                {website ? <a href={website} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700">Visit website <ArrowRight className="h-4 w-4" /></a> : null}
+                <Link href={taskRoute} className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-100">Browse more</Link>
               </div>
             </div>
 
