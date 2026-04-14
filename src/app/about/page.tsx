@@ -1,93 +1,143 @@
-import Link from "next/link";
-import { PageShell } from "@/components/shared/page-shell";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { mockTeamMembers } from "@/data/mock-data";
-import { SITE_CONFIG } from "@/lib/site-config";
+import Link from 'next/link'
+import { ArrowRight, Feather, Gem, Sparkles } from 'lucide-react'
+import { NavbarShell } from '@/components/shared/navbar-shell'
+import { Footer } from '@/components/shared/footer'
+import { Button } from '@/components/ui/button'
+import { SITE_CONFIG } from '@/lib/site-config'
 
-const highlights = [
-  { label: "Creators onboarded", value: "12k+" },
-  { label: "Bookmarks shared", value: "180k" },
-  { label: "Listings published", value: "8.6k" },
-];
+const pillars = [
+  {
+    title: 'Editorial integrity',
+    body: 'Every feature is commissioned, fact-checked, and designed to reward close reading—not skim-and-scroll habits.',
+    icon: Feather,
+  },
+  {
+    title: 'Quiet luxury',
+    body: 'We favour restraint in layout, typography, and motion so the work feels timeless rather than trend-chasing.',
+    icon: Gem,
+  },
+  {
+    title: 'Reader-first product',
+    body: 'Technology exists to remove friction between curious readers and exceptional stories, never to hijack attention.',
+    icon: Sparkles,
+  },
+]
 
-const values = [
-  { title: "Curated by people", description: "We believe trusted recommendations beat endless feeds." },
-  { title: "Designed for focus", description: "Clear, calm UI helps you find the next best resource fast." },
-  { title: "Built to share", description: "Collections make collaboration and knowledge flow effortless." },
-];
+const milestones = [
+  { year: '2018', label: 'Founding essays', detail: 'A small circle of writers launches the first WINONAJ supplement.' },
+  { year: '2021', label: 'Global bylines', detail: 'Correspondents join from London, Lagos, and Singapore.' },
+  { year: '2024', label: 'Digital atelier', detail: 'The studio formalises art direction, audio, and print-adjacent layouts.' },
+  { year: 'Today', label: 'Continuous issues', detail: 'Rolling publication with seasonal print-inspired themes online.' },
+]
 
 export default function AboutPage() {
   return (
-    <PageShell
-      title={`About ${SITE_CONFIG.name}`}
-      description={`${SITE_CONFIG.name} is a modern platform for creators, communities, and curated business discovery.`}
-      actions={
-        <>
-          <Button variant="outline" asChild>
-            <Link href="/team">Meet the Team</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </>
-      }
-    >
-      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <Card className="border-border bg-card">
-          <CardContent className="space-y-4 p-6">
-            <Badge variant="secondary">Our Story</Badge>
-            <h2 className="text-2xl font-semibold text-foreground">
-              A single home for knowledge, discovery, and community.
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              {SITE_CONFIG.name} brings together publishing, listings, and social bookmarking so teams can move faster
-              and keep their best resources close.
+    <div className="min-h-screen bg-[#fbf6ee] text-[#241711]">
+      <NavbarShell />
+      <main>
+        <section className="border-b border-[#dcc8b7]/80 bg-[linear-gradient(180deg,#fffdf9_0%,#fbf6ee_100%)]">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#8a6f5e]">About {SITE_CONFIG.name}</p>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
+              An independent editorial house for the modern luxury reader.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#6e5547]">
+              {SITE_CONFIG.name} publishes considered essays, market notes, and cultural reporting with the pacing of a
+              private journal and the finish of a collector&apos;s annual.
             </p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {highlights.map((item) => (
-                <div key={item.label} className="rounded-lg border border-border bg-secondary/40 p-4">
-                  <div className="text-2xl font-semibold text-foreground">{item.value}</div>
-                  <div className="text-xs text-muted-foreground">{item.label}</div>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Button asChild className="rounded-full bg-[#241711] px-6 text-[#fff1e2] hover:bg-[#3a241b]">
+                <Link href="/team" className="inline-flex items-center gap-2">
+                  Meet the team
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-full border-[#dcc8b7] bg-transparent text-[#241711] hover:bg-[#f5e7d7]"
+              >
+                <Link href="/contact">Commission &amp; partnerships</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start">
+            <div className="rounded-[2rem] border border-[#dcc8b7] bg-[#fffdfa] p-8 shadow-[0_24px_60px_rgba(77,47,27,0.08)]">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em]">Why we exist</h2>
+              <p className="mt-4 text-sm leading-8 text-[#6e5547]">
+                The feed era flattened nuance. We built {SITE_CONFIG.name} as a counterweight: slower headlines, richer
+                context, and design language borrowed from fine bookmaking—serif rhythm, warm paper tones, and gold used
+                as punctuation, not noise.
+              </p>
+              <p className="mt-4 text-sm leading-8 text-[#6e5547]">
+                Our newsroom partners with independent photographers and illustrators so each story carries a distinct
+                visual signature. Sponsored sections are labelled clearly and never borrow the voice of our editors.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {pillars.map(({ title, body, icon: Icon }) => (
+                <div
+                  key={title}
+                  className="rounded-[1.75rem] border border-[#e6d6c8] bg-[#fff4e8]/80 p-6 transition-colors hover:border-[#c5a059]/50"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#dcc8b7] bg-[#fffdfa] text-[#8a6f5e]">
+                      <Icon className="h-5 w-5" strokeWidth={1.5} />
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-semibold">{title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-[#6e5547]">{body}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
-        <div className="space-y-4">
-          {values.map((value) => (
-            <Card key={value.title} className="border-border bg-card">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+          </div>
+        </section>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {mockTeamMembers.map((member) => (
-          <Card key={member.id} className="border-border bg-card transition-transform hover:-translate-y-1">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={member.avatar} alt={member.name} />
-                  <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{member.name}</p>
-                  <p className="text-xs text-muted-foreground">{member.role}</p>
+        <section className="border-y border-[#dcc8b7]/60 bg-[#fffdfa]">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+            <h2 className="text-center text-xs font-semibold uppercase tracking-[0.28em] text-[#8a6f5e]">Milestones</h2>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {milestones.map((m) => (
+                <div key={m.year} className="rounded-2xl border border-[#e6d6c8] bg-[#fbf6ee] p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c5a059]">{m.year}</p>
+                  <p className="mt-2 text-base font-semibold">{m.label}</p>
+                  <p className="mt-2 text-sm leading-7 text-[#6e5547]">{m.detail}</p>
                 </div>
-              </div>
-              <p className="mt-3 text-sm text-muted-foreground">{member.bio}</p>
-              <p className="mt-3 text-xs text-muted-foreground">{member.location}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </PageShell>
-  );
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-[2rem] border border-[#dcc8b7] bg-[linear-gradient(135deg,#fffdfa_0%,#fff4e8_100%)] p-8 sm:p-10 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10">
+            <div>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em]">Visit the atelier</h2>
+              <p className="mt-4 text-sm leading-8 text-[#6e5547]">
+                Private tours of our editorial floor are limited each quarter. Press, academic, and brand partners can
+                request a walkthrough to see how stories move from pitch to published layout.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 lg:mt-0 lg:items-end">
+              <Button asChild className="w-full rounded-full bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b] sm:w-auto">
+                <Link href="/press">Press &amp; media kit</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="w-full rounded-full border-[#dcc8b7] bg-white/80 sm:w-auto"
+              >
+                <Link href="/articles">Read the latest issue</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  )
 }
