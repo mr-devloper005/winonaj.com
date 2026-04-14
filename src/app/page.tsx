@@ -98,19 +98,6 @@ function getDirectoryTone(brandPack: string) {
   }
 }
 
-function getEditorialTone() {
-  return {
-    shell: 'bg-[#fbf6ee] text-[#241711]',
-    panel: 'border border-[#dcc8b7] bg-[#fffdfa] shadow-[0_24px_60px_rgba(77,47,27,0.08)]',
-    soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
-    muted: 'text-[#6e5547]',
-    title: 'text-[#241711]',
-    badge: 'bg-[#241711] text-[#fff1e2]',
-    action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-    actionAlt: 'border border-[#dcc8b7] bg-transparent text-[#241711] hover:bg-[#f5e7d7]',
-  }
-}
-
 function getVisualTone() {
   return {
     shell: 'bg-[#07101f] text-white',
@@ -267,76 +254,145 @@ function DirectoryHome({ primaryTask, enabledTasks, listingPosts, classifiedPost
   )
 }
 
-function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTask?: EnabledTask; articlePosts: SitePost[]; supportTasks: EnabledTask[] }) {
-  const tone = getEditorialTone()
+function EditorialHome({ primaryTask: _primaryTask, articlePosts, supportTasks }: { primaryTask?: EnabledTask; articlePosts: SitePost[]; supportTasks: EnabledTask[] }) {
   const lead = articlePosts[0]
   const side = articlePosts.slice(1, 5)
+  const statCount = articlePosts.length || 12
 
   return (
-    <main className={tone.shell}>
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <div>
-            <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>
-              <FileText className="h-3.5 w-3.5" />
-              Reading-first publication
+    <main className="bg-transparent">
+      <div className="border-b border-[#333F44]/10 bg-[#333F44]/[0.04]">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-5 gap-y-1 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.26em] text-[#4a5c5f] sm:px-8">
+          {['Essays', 'Culture', 'Ideas', 'Explainers', 'Weekly picks'].map((label) => (
+            <span key={label} className="opacity-90">
+              {label}
             </span>
-            <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
-              Essays, analysis, and slower reading designed like a publication, not a dashboard.
-            </h1>
-            <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={primaryTask?.route || '/articles'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
-                Start reading
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/about" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                About the publication
-              </Link>
+          ))}
+        </div>
+      </div>
+
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-stretch">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#1A1A1B] p-8 shadow-[0_36px_90px_rgba(0,0,0,0.2)] sm:p-10 lg:p-12">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(55,170,156,0.07)_0%,transparent_45%,rgba(148,243,228,0.05)_100%)]" />
+            <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#37AA9C]">{siteContent.hero.badge}</p>
+              <h1 className="mt-6 max-w-2xl font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-[2.75rem] lg:text-[3.15rem]">
+                {siteContent.hero.title[0]} <span className="italic text-[#94F3E4]">{siteContent.hero.title[1]}</span>
+              </h1>
+              <p className="mt-6 max-w-xl text-sm leading-relaxed text-[#94F3E4]/75 sm:text-base">{siteContent.hero.description}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href={siteContent.hero.primaryCta.href}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#37AA9C] px-6 py-3.5 text-sm font-semibold text-[#0a1214] shadow-lg shadow-[#37AA9C]/25 transition hover:bg-[#94F3E4]"
+                >
+                  {siteContent.hero.primaryCta.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href={siteContent.hero.secondaryCta.href}
+                  className="text-sm font-semibold text-[#94F3E4] underline decoration-[#37AA9C]/60 underline-offset-4 transition hover:text-white"
+                >
+                  {siteContent.hero.secondaryCta.label}
+                </Link>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-6 border-t border-white/10 pt-8">
+                <div>
+                  <p className="font-[family-name:var(--font-display)] text-3xl font-semibold text-white">{statCount}+</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#94F3E4]/55">Stories indexed</p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-display)] text-3xl font-semibold text-white">24/7</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#94F3E4]/55">Always open</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <aside className={`rounded-[2rem] p-6 ${tone.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Inside this issue</p>
-            <div className="mt-5 space-y-5">
-              {side.map((post) => (
-                <Link key={post.id} href={`/articles/${post.slug}`} className="block border-b border-black/10 pb-5 last:border-b-0 last:pb-0">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-60">Feature</p>
-                  <h3 className="mt-2 text-xl font-semibold">{post.title}</h3>
-                  <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Long-form perspective with a calmer reading rhythm.'}</p>
-                </Link>
-              ))}
-            </div>
+          <aside className="relative flex flex-col">
+            {lead ? (
+              <Link
+                href={`/articles/${lead.slug}`}
+                className="group relative flex flex-1 flex-col overflow-hidden rounded-[2rem] border border-[#333F44]/12 bg-white/95 p-6 shadow-[0_28px_70px_rgba(26,26,27,0.1)] transition hover:-translate-y-1 hover:shadow-[0_36px_90px_rgba(26,26,27,0.12)] sm:p-8"
+              >
+                <span className="absolute right-5 top-5 rounded-full bg-[#37AA9C] px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#0a1214]">
+                  {siteContent.hero.featureCardBadge}
+                </span>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#37AA9C]">{siteContent.hero.featureCardTitle}</p>
+                <h2 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight text-[#1A1A1B] group-hover:text-[#0f6b62] sm:text-[1.65rem]">
+                  {lead.title}
+                </h2>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-[#4a5c5f]">{lead.summary || siteContent.hero.featureCardDescription}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#1A1A1B]">
+                  Read story
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ) : (
+              <div className="flex flex-1 flex-col justify-center rounded-[2rem] border border-dashed border-[#37AA9C]/35 bg-[#ecf7f4]/60 p-8 text-center text-sm text-[#4a5c5f]">
+                New stories ship here as soon as they are published.
+              </div>
+            )}
           </aside>
         </div>
 
-        {lead ? (
-          <div className={`mt-12 overflow-hidden rounded-[2.5rem] ${tone.panel}`}>
-            <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="relative min-h-[360px] overflow-hidden">
-                <ContentImage src={getPostImage(lead)} alt={lead.title} fill className="object-cover" />
-              </div>
-              <div className="p-8 lg:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Lead story</p>
-                <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em]">{lead.title}</h2>
-                <p className={`mt-4 text-sm leading-8 ${tone.muted}`}>{lead.summary || 'A more deliberate lead story surface with room for a proper narrative setup.'}</p>
-                <Link href={`/articles/${lead.slug}`} className={`mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
-                  Read article
-                  <ArrowRight className="h-4 w-4" />
+        {side.length ? (
+          <div className="mt-12 rounded-[2rem] border border-[#333F44]/10 bg-white/80 p-6 shadow-[0_18px_50px_rgba(26,26,27,0.05)] sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#37AA9C]">{siteContent.home.sideBadge}</p>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {side.map((post) => (
+                <Link key={post.id} href={`/articles/${post.slug}`} className="group block border-b border-[#333F44]/8 pb-5 last:border-b-0 last:pb-0 sm:border-b-0 sm:pb-0">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4a5c5f]/80">Pick</p>
+                  <h3 className="mt-2 font-[family-name:var(--font-display)] text-lg font-semibold text-[#1A1A1B] group-hover:text-[#0f6b62]">{post.title}</h3>
+                  <p className="mt-2 line-clamp-3 text-sm text-[#4a5c5f]">{post.summary || 'Long-form perspective with room to breathe.'}</p>
                 </Link>
-              </div>
+              ))}
             </div>
           </div>
         ) : null}
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {supportTasks.slice(0, 3).map((task) => (
-            <Link key={task.key} href={task.route} className={`rounded-[1.8rem] p-6 ${tone.soft}`}>
-              <h3 className="text-xl font-semibold">{task.label}</h3>
-              <p className={`mt-3 text-sm leading-7 ${tone.muted}`}>{task.description}</p>
-            </Link>
-          ))}
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div className="rounded-[2rem] border border-[#333F44]/10 bg-white/85 p-8 shadow-[0_22px_60px_rgba(26,26,27,0.06)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#37AA9C]">{siteContent.home.introBadge}</p>
+            <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-[-0.03em] text-[#1A1A1B]">{siteContent.home.introTitle}</h2>
+            {siteContent.home.introParagraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="mt-5 text-sm leading-relaxed text-[#4a5c5f]">
+                {paragraph}
+              </p>
+            ))}
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href={siteContent.home.primaryLink.href} className="inline-flex items-center gap-2 rounded-full bg-[#1A1A1B] px-5 py-3 text-sm font-semibold text-[#94F3E4] transition hover:bg-[#333F44]">
+                {siteContent.home.primaryLink.label}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href={siteContent.home.secondaryLink.href} className="inline-flex items-center gap-2 rounded-full border border-[#333F44]/20 px-5 py-3 text-sm font-semibold text-[#1A1A1B] hover:bg-[#ecf7f4]">
+                {siteContent.home.secondaryLink.label}
+              </Link>
+            </div>
+          </div>
+          <ul className="space-y-4 rounded-[2rem] border border-[#333F44]/10 bg-[#ecf7f4]/50 p-8">
+            {siteContent.home.sidePoints.map((point) => (
+              <li key={point} className="flex gap-3 text-sm text-[#4a5c5f]">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#37AA9C]" />
+                {point}
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {supportTasks.length ? (
+          <div className="mt-10 flex flex-wrap gap-3">
+            {supportTasks.slice(0, 4).map((task) => (
+              <Link
+                key={task.key}
+                href={task.route}
+                className="rounded-2xl border border-[#333F44]/12 bg-white/90 px-5 py-4 text-sm font-semibold text-[#1A1A1B] shadow-sm transition hover:border-[#37AA9C]/40 hover:shadow-md"
+              >
+                {task.label}
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </section>
     </main>
   )

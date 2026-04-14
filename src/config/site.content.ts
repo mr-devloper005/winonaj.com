@@ -2,75 +2,75 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Independent reading platform',
+    tagline: 'Editorial reading — calm, fast, focused',
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
+    tagline: 'Long-form stories and weekly picks',
   },
   hero: {
-    badge: 'Latest stories and visuals',
-    title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
+    badge: '— Independent magazine —',
+    title: ['Your next great read is', 'already here.'],
     description:
-      'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      'A Gen‑Z friendly reading space: bold type, zero clutter, and articles meant to be finished — not skimmed in three seconds.',
     primaryCta: {
-      label: 'Read latest stories',
+      label: 'Start reading',
       href: '/articles',
     },
     secondaryCta: {
-      label: 'Explore visuals',
-      href: '/image-sharing',
+      label: 'See what’s new',
+      href: '/articles',
     },
-    searchPlaceholder: 'Search stories, visuals, listings, and more',
-    focusLabel: 'Focus',
-    featureCardBadge: 'latest cover rotation',
-    featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
+    searchPlaceholder: 'Search articles and topics',
+    focusLabel: 'Topics',
+    featureCardBadge: 'Just published',
+    featureCardTitle: 'Featured story',
     featureCardDescription:
-      'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      'Fresh perspectives, sharp editing, and layouts built for deep reading — the way articles are supposed to feel.',
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Independent articles & long-form reading',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Read thoughtful essays, explainers, and stories in a minimal editorial layout designed for focus.',
+      openGraphTitle: 'Independent articles & long-form reading',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Editorial articles with strong typography, calm pacing, and discovery that does not feel like a generic feed.',
+      keywords: ['articles', 'independent magazine', 'long-form reading', 'essays', 'editorial'],
     },
-    introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introBadge: 'Why this feels different',
+    introTitle: 'Built like a publication, not a noisy social feed.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'Every screen prioritizes legibility: serif headlines, airy spacing, and motion that stays out of your way.',
+      'You get one clear path: discover a story, settle in, and read — with search and categories when you want to explore.',
+      'The interface borrows from modern editorial sites: soft cards, confident type, and a cool teal palette that stays readable day or night.',
     ],
-    sideBadge: 'At a glance',
+    sideBadge: 'On this issue',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Editorial hero with featured story and supporting picks.',
+      'Category strip and stat row tuned for trust and momentum.',
+      'Article pages show reading time plus a scroll progress cue.',
+      'Responsive layout: rail navigation on desktop, thumb-friendly dock on mobile.',
     ],
     primaryLink: {
-      label: 'Browse articles',
+      label: 'Browse all articles',
       href: '/articles',
     },
     secondaryLink: {
-      label: 'See visuals',
-      href: '/image-sharing',
+      label: 'Search the archive',
+      href: '/search',
     },
   },
   cta: {
-    badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    badge: 'Join the desk',
+    title: 'Save your spot for new drops, essays, and weekend reads.',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'Create a free account to follow what we publish — same platform behavior, upgraded presentation.',
     primaryCta: {
-      label: 'Get Started Free',
+      label: 'Create free account',
       href: '/register',
     },
     secondaryCta: {
-      label: 'Contact Sales',
+      label: 'Ask a question',
       href: '/contact',
     },
   },

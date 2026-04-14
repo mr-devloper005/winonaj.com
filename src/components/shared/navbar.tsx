@@ -11,6 +11,7 @@ import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { cn } from '@/lib/utils'
 import { siteContent } from '@/config/site.content'
 import { getFactoryState } from '@/design/factory/get-factory-state'
+import { NavbarArticleHome } from '@/components/shared/navbar-article-home'
 
 const NavbarAuthControls = dynamic(() => import('@/components/shared/navbar-auth-controls').then((mod) => mod.NavbarAuthControls), {
   ssr: false,
@@ -193,6 +194,10 @@ export function Navbar() {
         )}
       </header>
     )
+  }
+
+  if (recipe.homeLayout === 'article-home') {
+    return <NavbarArticleHome />
   }
 
   const style = variantClasses[recipe.navbar]

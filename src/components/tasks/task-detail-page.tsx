@@ -1,7 +1,9 @@
 import { ContentImage } from "@/components/shared/content-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Globe, Phone, Tag, Mail } from "lucide-react";
+import { MapPin, Globe, Phone, Tag, Mail, Clock } from "lucide-react";
+import { ArticleScrollProgress } from "@/components/articles/article-scroll-progress";
+import { estimateReadingMinutesFromHtml } from "@/lib/reading-time";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { Footer } from "@/components/shared/footer";
 import { TaskPostCard } from "@/components/shared/task-post-card";
@@ -157,6 +159,9 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         day: "numeric",
       })
     : "";
+  const readingMinutes = isArticle
+    ? estimateReadingMinutesFromHtml([articleSummary, articleHtml].filter(Boolean).join("\n\n"))
+    : 0;
   const postTags = Array.isArray(post.tags) ? post.tags.filter((tag) => typeof tag === "string") : [];
   const location = content.address || content.location;
   const images = getImageUrls(post, content);
@@ -245,6 +250,9 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   return (
     <div className="min-h-screen bg-background">
       <NavbarShell />
+      {isArticle ? (
+        <ArticleScrollProgress useRailOffset={recipe.homeLayout === "article-home"} />
+      ) : null}
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />
         <Link
@@ -269,7 +277,11 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
                   <span>By {articleAuthor}</span>
                   {articleDate ? <span>{articleDate}</span> : null}
-                  <Badge variant="secondary" className="inline-flex items-center gap-1">
+                  <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                    <Clock className="h-3.5 w-3.5" aria-hidden />
+                    {readingMinutes} min read
+                  </span>
+                  <Badge variant="secondary" className="inline-flex items-center gap-1 border-[#37AA9C]/25 bg-[#37AA9C]/10 text-[#1a4d47]">
                     <Tag className="h-3.5 w-3.5" />
                     {category}
                   </Badge>
