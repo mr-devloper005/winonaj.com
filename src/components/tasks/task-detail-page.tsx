@@ -1,11 +1,9 @@
-import { ContentImage } from "@/components/shared/content-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, Globe, Phone, Tag, Mail, Clock } from "lucide-react";
 import { ArticleScrollProgress } from "@/components/articles/article-scroll-progress";
 import { estimateReadingMinutesFromHtml } from "@/lib/reading-time";
 import { NavbarShell } from "@/components/shared/navbar-shell";
-import { Footer } from "@/components/shared/footer";
 import { TaskPostCard } from "@/components/shared/task-post-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,6 +18,7 @@ import { RichContent, formatRichHtml } from "@/components/shared/rich-content";
 import { getFactoryState } from "@/design/factory/get-factory-state";
 import { getProductKind } from "@/design/factory/get-product-kind";
 import { DirectoryTaskDetailPage } from "@/design/products/directory/task-detail-page";
+import { PhotoLightbox } from "@/components/shared/photo-lightbox";
 
 type PostContent = {
   category?: string;
@@ -152,13 +151,6 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
     (typeof content.author === "string" && content.author.trim()) ||
     post.authorName ||
     "Editorial Team";
-  const articleDate = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString("en-IN", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : "";
   const readingMinutes = isArticle
     ? estimateReadingMinutesFromHtml([articleSummary, articleHtml].filter(Boolean).join("\n\n"))
     : 0;
@@ -242,7 +234,6 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           mapEmbedUrl={mapEmbedUrl}
           related={related}
         />
-        <Footer />
       </div>
     );
   }
@@ -257,9 +248,10 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         <SchemaJsonLd data={schemaPayload} />
         <Link
           href={taskConfig?.route || "/"}
-          className="mb-6 inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+          className="mb-8 inline-flex items-center gap-2 text-base font-medium text-gray-500 hover:text-gray-700 transition-colors duration-200 group"
         >
-          ← Back to {taskConfig?.label || "posts"}
+          <span className="transition-transform group-hover:-translate-x-1">←</span>
+          Back to {taskConfig?.label || "posts"}
         </Link>
 
         <div
@@ -270,44 +262,49 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         >
           <div className={cn(isClassified ? "space-y-8" : "")}>
             {isArticle ? (
-              <div className="mx-auto w-full max-w-4xl space-y-6">
-                <h1 className="text-4xl font-semibold leading-tight text-foreground">
-                  {post.title}
-                </h1>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                  <span>By {articleAuthor}</span>
-                  {articleDate ? <span>{articleDate}</span> : null}
-                  <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-                    <Clock className="h-3.5 w-3.5" aria-hidden />
-                    {readingMinutes} min read
-                  </span>
-                  <Badge variant="secondary" className="inline-flex items-center gap-1 border-[#37AA9C]/25 bg-[#37AA9C]/10 text-[#1a4d47]">
-                    <Tag className="h-3.5 w-3.5" />
-                    {category}
-                  </Badge>
-                </div>
-                {postTags.length ? (
-                  <div className="flex flex-wrap gap-2">
+              <div className="mx-auto w-full max-w-5xl space-y-8">
+                <div className="space-y-6">
+                  <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tighter text-gray-900">
+                    {post.title}
+                  </h1>
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                        {articleAuthor.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="font-medium text-gray-800">{articleAuthor}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-500">
+                      <Clock className="h-4 w-4" />
+                      <span>{readingMinutes} min read</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Badge className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white border-0 px-4 py-2 text-sm font-medium shadow-md">
+                      <Tag className="h-4 w-4" />
+                      {category}
+                    </Badge>
                     {postTags.map((tag) => (
-                      <Badge key={tag} variant="outline">
+                      <Badge key={tag} variant="outline" className="rounded-full border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-700 transition-colors px-3 py-1">
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                ) : null}
-                {articleSummary ? (
-                  <p className="text-base leading-7 text-muted-foreground">{articleSummary}</p>
-                ) : null}
+                </div>
+                {articleSummary && (
+                  <div className="rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 p-6">
+                    <p className="text-lg leading-8 text-gray-700 font-medium italic">{articleSummary}</p>
+                  </div>
+                )}
                 {images[0] ? (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border bg-muted">
-                    <ContentImage
-                      src={images[0]}
-                      alt={`${post.title} featured image`}
-                      fill
-                      className="object-cover"
-                      intrinsicWidth={1600}
-                      intrinsicHeight={900}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-2xl">
+                    <PhotoLightbox
+                      images={images}
+                      title={post.title}
+                      triggerClassName="absolute inset-0 block cursor-zoom-in"
+                      imageClassName="object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
                 ) : null}
                 <RichContent html={articleHtml} className="leading-8 prose-p:my-6 prose-h2:my-8 prose-h3:my-6 prose-ul:my-6" />
@@ -323,35 +320,37 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                   </div>
                 ) : null}
 
-                <div className={cn(isClassified ? "mx-auto w-full max-w-4xl" : "mt-6")}>
-                  <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                    <Badge variant="secondary" className="inline-flex items-center gap-1">
-                      <Tag className="h-3.5 w-3.5" />
+                <div className={cn(isClassified ? "mx-auto w-full max-w-5xl" : "mt-8")}>
+                  <div className="flex flex-wrap items-center gap-4 mb-6">
+                    <Badge className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white border-0 px-4 py-2 text-sm font-medium shadow-md">
+                      <Tag className="h-4 w-4" />
                       {category}
                     </Badge>
                     {location && (
-                      <span className="inline-flex items-center gap-1">
+                      <span className="inline-flex items-center gap-2 text-gray-600 bg-gray-100 rounded-full px-4 py-2 text-sm font-medium">
                         <MapPin className="h-4 w-4" />
                         {location}
                       </span>
                     )}
                   </div>
-                  <h1 className="mt-4 text-3xl font-semibold text-foreground">{post.title}</h1>
-                  <RichContent html={descriptionHtml} className="mt-3 max-w-3xl" />
+                  <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tighter text-gray-900 mb-6">{post.title}</h1>
+                  <RichContent html={descriptionHtml} className="text-lg leading-8 text-gray-700 max-w-4xl" />
                 </div>
               </>
             ) : null}
 
             {isClassified ? (
-              <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-6">
-                <h2 className="text-lg font-semibold text-foreground">Business details</h2>
-                <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+              <div className="mx-auto w-full max-w-5xl rounded-3xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Business details</h2>
+                <div className="mt-6 space-y-4">
                   {content.website && (
-                    <div className="flex items-start gap-2">
-                      <Globe className="mt-0.5 h-4 w-4" />
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-100 hover:border-gray-200 transition-colors">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                        <Globe className="h-5 w-5 text-white" />
+                      </div>
                       <a
                         href={content.website}
-                        className="break-all text-foreground hover:underline"
+                        className="text-gray-800 hover:text-blue-600 font-medium hover:underline transition-colors"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -360,26 +359,32 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                     </div>
                   )}
                   {content.phone && (
-                    <div className="flex items-start gap-2">
-                      <Phone className="mt-0.5 h-4 w-4" />
-                      <span>{content.phone}</span>
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-100">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                        <Phone className="h-5 w-5 text-white" />
+                      </div>
+                      <span className="text-gray-800 font-medium">{content.phone}</span>
                     </div>
                   )}
                   {content.email && (
-                    <div className="flex items-start gap-2">
-                      <Mail className="mt-0.5 h-4 w-4" />
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-100 hover:border-gray-200 transition-colors">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center flex-shrink-0">
+                        <Mail className="h-5 w-5 text-white" />
+                      </div>
                       <a
                         href={`mailto:${content.email}`}
-                        className="break-all text-foreground hover:underline"
+                        className="text-gray-800 hover:text-blue-600 font-medium hover:underline transition-colors"
                       >
                         {content.email}
                       </a>
                     </div>
                   )}
                   {location && (
-                    <div className="flex items-start gap-2">
-                      <MapPin className="mt-0.5 h-4 w-4" />
-                      <span>{location}</span>
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-100">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="h-5 w-5 text-white" />
+                      </div>
+                      <span className="text-gray-800 font-medium">{location}</span>
                     </div>
                   )}
                 </div>
@@ -387,24 +392,29 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
             ) : null}
 
             {content.highlights?.length && !isArticle ? (
-              <div className={cn("mt-8 rounded-2xl border border-border bg-card p-6", isClassified ? "mx-auto w-full max-w-4xl" : "")}>
-                <h2 className="text-lg font-semibold text-foreground">Highlights</h2>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  {content.highlights.map((item) => (
-                    <li key={item}>• {item}</li>
+              <div className={cn("mt-10 rounded-3xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-xl p-8", isClassified ? "mx-auto w-full max-w-5xl" : "")}>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Highlights</h2>
+                <ul className="mt-6 space-y-4">
+                  {content.highlights.map((item, index) => (
+                    <li key={item} className="flex items-start gap-4">
+                      <div className="h-6 w-6 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-white text-xs font-bold">{index + 1}</span>
+                      </div>
+                      <span className="text-gray-700 font-medium leading-relaxed">{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
             ) : null}
 
             {isClassified && mapEmbedUrl ? (
-              <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-4">
-                <p className="text-sm font-semibold text-foreground">Location map</p>
-                <div className="mt-4 overflow-hidden rounded-xl border border-border">
+              <div className="mx-auto w-full max-w-5xl rounded-3xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Location map</h2>
+                <div className="mt-6 overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
                   <iframe
                     title="Business location map"
                     src={mapEmbedUrl}
-                    className="h-56 w-full"
+                    className="h-96 w-full"
                     loading="lazy"
                   />
                 </div>
@@ -544,7 +554,6 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
           </nav>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

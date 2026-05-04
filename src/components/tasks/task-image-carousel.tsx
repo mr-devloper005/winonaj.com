@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ContentImage } from "@/components/shared/content-image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PhotoLightbox } from "@/components/shared/photo-lightbox";
 
 export function TaskImageCarousel({ images }: { images: string[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -36,21 +36,22 @@ export function TaskImageCarousel({ images }: { images: string[] }) {
           {images.map((src, index) => (
             <div key={`${src}-${index}`} className="min-w-0 flex-[0_0_100%]">
               <div className="relative aspect-[16/10] w-full">
-                <ContentImage
-                  src={src}
-                  alt={`Gallery image ${index + 1} for verified business listing`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 900px"
-                  quality={78}
-                  className="object-cover"
-                  intrinsicWidth={1440}
-                  intrinsicHeight={900}
-                  priority={index === 0}
+                <PhotoLightbox
+                  images={images}
+                  title="Gallery preview"
+                  initialIndex={index}
+                  triggerClassName="absolute inset-0 block cursor-zoom-in"
+                  imageClassName="object-cover transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/50 via-black/10 to-transparent px-5 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
+        <span>Tap photo to enlarge</span>
+        <span>{images.length} image{images.length === 1 ? "" : "s"}</span>
       </div>
 
       {images.length > 1 && (

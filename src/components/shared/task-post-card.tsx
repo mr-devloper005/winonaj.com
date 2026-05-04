@@ -55,28 +55,28 @@ const getImageUrl = (post: SitePost, content: ListingContent) => {
 
 const cardStyles = {
   'listing-elevated': {
-    frame: 'rounded-[1.9rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_28px_75px_rgba(15,23,42,0.14)]',
-    muted: 'text-slate-600',
-    title: 'text-slate-950',
-    badge: 'bg-slate-950 text-white',
+    frame: 'rounded-2xl border-0 bg-gradient-to-br from-white to-gray-50 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300',
+    muted: 'text-gray-600',
+    title: 'text-gray-900',
+    badge: 'bg-gradient-to-r from-blue-500 to-purple-600 text-white',
   },
   'editorial-feature': {
-    frame: 'rounded-[1.8rem] border border-[#333F44]/12 bg-white/95 shadow-[0_20px_56px_rgba(26,26,27,0.08)] hover:-translate-y-[2px] hover:shadow-[0_28px_72px_rgba(26,26,27,0.12)]',
-    muted: 'text-[#4a5c5f]',
-    title: 'text-[#1A1A1B]',
-    badge: 'bg-[#1A1A1B] text-[#94F3E4]',
+    frame: 'rounded-2xl border-0 bg-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ring-1 ring-gray-100 hover:ring-gray-200',
+    muted: 'text-gray-500',
+    title: 'text-gray-900',
+    badge: 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white',
   },
   'studio-panel': {
-    frame: 'rounded-[1.9rem] border border-white/10 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(12,23,43,0.96))] text-white shadow-[0_24px_80px_rgba(15,23,42,0.35)] hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,23,42,0.42)]',
+    frame: 'rounded-2xl border-0 bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300',
     muted: 'text-slate-300',
     title: 'text-white',
-    badge: 'bg-[#8df0c8] text-[#07111f]',
+    badge: 'bg-gradient-to-r from-pink-500 to-rose-600 text-white',
   },
   'catalog-grid': {
-    frame: 'rounded-[1.8rem] border border-[rgba(67,78,41,0.14)] bg-[#f8faf1] shadow-[0_18px_58px_rgba(55,65,31,0.1)] hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(55,65,31,0.14)]',
-    muted: 'text-[#5b664c]',
-    title: 'text-[#1f2617]',
-    badge: 'bg-[#1f2617] text-[#edf5dc]',
+    frame: 'rounded-2xl border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300',
+    muted: 'text-amber-700',
+    title: 'text-amber-900',
+    badge: 'bg-gradient-to-r from-amber-500 to-orange-600 text-white',
   },
 } as const
 
@@ -112,18 +112,18 @@ export function TaskPostCard({
   if (isDirectorySurface) {
     const cardTone = recipe.brandPack === 'market-utility'
       ? {
-          frame: 'rounded-[1.75rem] border border-[#d7deca] bg-white shadow-[0_18px_44px_rgba(64,76,34,0.08)] hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(64,76,34,0.14)]',
-          badge: 'bg-[#1f2617] text-[#edf5dc]',
-          muted: 'text-[#5b664c]',
-          title: 'text-[#1f2617]',
-          cta: 'text-[#1f2617]',
+          frame: 'rounded-2xl border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300',
+          badge: 'bg-gradient-to-r from-green-600 to-emerald-600 text-white',
+          muted: 'text-green-700',
+          title: 'text-green-900',
+          cta: 'text-green-700',
         }
       : {
-          frame: 'rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_18px_44px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(15,23,42,0.14)]',
-          badge: 'bg-slate-950 text-white',
-          muted: 'text-slate-600',
-          title: 'text-slate-950',
-          cta: 'text-slate-950',
+          frame: 'rounded-2xl border-0 bg-gradient-to-br from-white to-gray-50 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300',
+          badge: 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white',
+          muted: 'text-gray-600',
+          title: 'text-gray-900',
+          cta: 'text-gray-700',
         }
 
     return (
@@ -131,11 +131,11 @@ export function TaskPostCard({
         <div className="relative aspect-[16/11] overflow-hidden bg-slate-100">
           <ContentImage src={image} alt={altText} fill sizes={imageSizes} quality={75} className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" intrinsicWidth={960} intrinsicHeight={720} />
           <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
-            <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${cardTone.badge}`}>
+            <span className={`inline-flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold shadow-md ${cardTone.badge}`}>
               <Tag className="h-3.5 w-3.5" />
               {category}
             </span>
-            <span className="rounded-full bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+            <span className="rounded-full bg-white/90 backdrop-blur-sm px-4 py-2 text-xs font-semibold shadow-md text-gray-700">
               {variant === 'classified' ? 'Open now' : 'Verified'}
             </span>
           </div>
@@ -180,14 +180,14 @@ export function TaskPostCard({
 
   return (
     <Link href={href} className={`group flex h-full flex-col overflow-hidden transition duration-300 ${visualVariant.frame}`}>
-      <div className={`relative ${imageAspect} overflow-hidden bg-[#ede2dc]`}>
-        <ContentImage src={image} alt={altText} fill sizes={imageSizes} quality={75} className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" intrinsicWidth={960} intrinsicHeight={720} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-80" />
-        <span className={`absolute left-4 top-4 inline-flex items-center gap-1 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${visualVariant.badge}`}>
+      <div className={`relative ${imageAspect} overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200`}>
+        <ContentImage src={image} alt={altText} fill sizes={imageSizes} quality={75} className="object-cover transition-transform duration-500 group-hover:scale-[1.06]" intrinsicWidth={960} intrinsicHeight={720} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+        <span className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold shadow-lg backdrop-blur-sm ${visualVariant.badge}`}>
           <Tag className="h-3.5 w-3.5" />
           {category}
         </span>
-        {variant === 'pdf' && <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/88 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-950 shadow"><FileText className="h-3.5 w-3.5" />PDF</span>}
+        {variant === 'pdf' && <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-sm px-4 py-2 text-xs font-semibold shadow-lg text-slate-900"><FileText className="h-3.5 w-3.5" />PDF</span>}
       </div>
       <div className={`flex flex-1 flex-col p-5 ${compact ? 'py-4' : ''}`}>
         <h3 className={`line-clamp-2 font-semibold leading-snug ${variant === 'article' ? 'text-[1.35rem]' : 'text-lg'} ${visualVariant.title}`}>{post.title}</h3>
