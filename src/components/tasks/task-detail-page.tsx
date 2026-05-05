@@ -239,7 +239,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <NavbarShell />
       {isArticle ? (
         <ArticleScrollProgress useRailOffset={recipe.homeLayout === "article-home"} />
