@@ -37,10 +37,8 @@ const variantShells = {
   'classified-market': 'bg-[linear-gradient(180deg,#f4f6ef_0%,#ffffff_100%)]',
   'sbm-curation': 'bg-[linear-gradient(180deg,#fff7ee_0%,#ffffff_100%)]',
   'sbm-library': 'bg-[linear-gradient(180deg,#f7f8fc_0%,#ffffff_100%)]',
-  'org-editorial':
-    'bg-[radial-gradient(circle_at_top_left,rgba(197,160,89,0.14),transparent_26%),linear-gradient(180deg,#fff9f2_0%,#fbf6ee_100%)]',
-  'comment-editorial':
-    'bg-[radial-gradient(circle_at_top_right,rgba(197,160,89,0.1),transparent_28%),linear-gradient(180deg,#fffdf9_0%,#fbf6ee_100%)]',
+  'org-editorial': 'bg-transparent',
+  'comment-editorial': 'bg-transparent',
 } as const
 
 export async function TaskListPage({ task, category }: { task: TaskKey; category?: string }) {

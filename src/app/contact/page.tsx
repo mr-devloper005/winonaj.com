@@ -1,6 +1,5 @@
 import { Building2, FileText, Image as ImageIcon, Mail, MapPin, Phone, Sparkles, Bookmark } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
@@ -75,7 +74,7 @@ export default function ContactPage() {
             ]
 
   return (
-    <div className={`min-h-screen ${tone.shell}`}>
+    <div className="min-h-screen bg-transparent">
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -121,7 +120,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   )
 }
