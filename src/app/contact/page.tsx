@@ -1,6 +1,5 @@
 import { Building2, FileText, Image as ImageIcon, Mail, MapPin, Phone, Sparkles, Bookmark } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
@@ -46,6 +45,9 @@ export default function ContactPage() {
   const { recipe } = getFactoryState()
   const productKind = getProductKind(recipe)
   const tone = getTone(productKind)
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || `hello@${SITE_CONFIG.domain}`
+  const supportSubject = encodeURIComponent(`Support request for ${SITE_CONFIG.name}`)
+  const partnerSubject = encodeURIComponent(`Partnership inquiry for ${SITE_CONFIG.name}`)
   const lanes =
     productKind === 'directory'
       ? [
@@ -72,7 +74,7 @@ export default function ContactPage() {
             ]
 
   return (
-    <div className={`min-h-screen ${tone.shell}`}>
+    <div className="min-h-screen bg-transparent">
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -80,6 +82,14 @@ export default function ContactPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Contact {SITE_CONFIG.name}</p>
             <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em]">A support page that matches the product, not a generic contact form.</h1>
             <p className={`mt-5 max-w-2xl text-sm leading-8 ${tone.muted}`}>Tell us what you are trying to publish, fix, or launch. We will route it through the right lane instead of forcing every request into the same support bucket.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={`mailto:${contactEmail}?subject=${supportSubject}`} className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
+                Email support
+              </a>
+              <a href={`mailto:${contactEmail}?subject=${partnerSubject}`} className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold ${tone.soft}`}>
+                Partnership email
+              </a>
+            </div>
             <div className="mt-8 space-y-4">
               {lanes.map((lane) => (
                 <div key={lane.title} className={`rounded-[1.6rem] p-5 ${tone.soft}`}>
@@ -93,17 +103,23 @@ export default function ContactPage() {
 
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
             <h2 className="text-2xl font-semibold">Send a message</h2>
+            <div className={`mt-4 rounded-[1.5rem] p-4 ${tone.soft}`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-70">Managed from env</p>
+              <a href={`mailto:${contactEmail}`} className="mt-2 inline-flex items-center gap-2 text-base font-semibold hover:underline">
+                <Mail className="h-4 w-4" />
+                {contactEmail}
+              </a>
+            </div>
             <form className="mt-6 grid gap-4">
               <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Your name" />
               <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
               <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What do you need help with?" />
               <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Share the full context so we can respond with the right next step." />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
+              <a href={`mailto:${contactEmail}?subject=${supportSubject}`} className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</a>
             </form>
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   )
 }

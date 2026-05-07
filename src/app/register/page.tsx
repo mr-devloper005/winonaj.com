@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Bookmark, Building2, FileText, Image as ImageIcon, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 
@@ -61,7 +60,7 @@ export default function RegisterPage() {
   const Icon = config.icon
 
   return (
-    <div className={`min-h-screen ${config.shell}`}>
+    <div className="min-h-screen bg-transparent">
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
@@ -95,7 +94,6 @@ export default function RegisterPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   )
 }
