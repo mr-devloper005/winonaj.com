@@ -37,10 +37,8 @@ const variantShells = {
   'classified-market': 'bg-[linear-gradient(180deg,#f4f6ef_0%,#ffffff_100%)]',
   'sbm-curation': 'bg-[linear-gradient(180deg,#fff7ee_0%,#ffffff_100%)]',
   'sbm-library': 'bg-[linear-gradient(180deg,#f7f8fc_0%,#ffffff_100%)]',
-  'org-editorial':
-    'bg-[radial-gradient(circle_at_top_left,rgba(197,160,89,0.14),transparent_26%),linear-gradient(180deg,#fff9f2_0%,#fbf6ee_100%)]',
-  'comment-editorial':
-    'bg-[radial-gradient(circle_at_top_right,rgba(197,160,89,0.1),transparent_28%),linear-gradient(180deg,#fffdf9_0%,#fbf6ee_100%)]',
+  'org-editorial': 'bg-transparent',
+  'comment-editorial': 'bg-transparent',
 } as const
 
 export async function TaskListPage({ task, category }: { task: TaskKey; category?: string }) {
@@ -135,18 +133,28 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
 
         {/* Listing Layouts */}
         {layoutKey === 'listing-directory' || layoutKey === 'listing-showcase' ? (
-          <section className="mb-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div className={`rounded-[2rem] p-7 shadow-[0_24px_70px_rgba(15,23,42,0.07)] ${ui.panel}`}>
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-70">
-                <Icon className="h-4 w-4" /> {taskConfig?.label || task}
+          <section className="mb-12 grid gap-6 xl:grid-cols-[1.18fr_0.82fr] xl:items-end">
+            <div className={`overflow-hidden rounded-[2.3rem] p-8 shadow-[0_24px_70px_rgba(15,23,42,0.07)] ${ui.panel}`}>
+              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-70">
+                <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1">
+                  <Icon className="h-4 w-4" /> {taskConfig?.label || task}
+                </span>
+                <span className="inline-flex rounded-full border border-black/10 bg-white/70 px-3 py-1">Refined discovery layout</span>
               </div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-foreground">
-                {taskConfig?.description || 'Latest posts'}
+              <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-foreground">
+                Browse trusted local surfaces with more story, less clutter.
               </h1>
-              <p className={`mt-4 max-w-2xl text-sm leading-7 ${ui.muted}`}>
-                Built with a cleaner scan rhythm, stronger metadata grouping, and a structure designed for business discovery rather than editorial reading.
+              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>
+                Inspired by long-scroll showcase pages, this version gives listings a stronger opening frame, more breathable spacing, and clearer contact cues without changing how the content works underneath.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {['Lead listing spotlight', 'Cleaner card rhythm', 'Faster contact scanning'].map((item) => (
+                  <div key={item} className={`rounded-[1.4rem] p-4 ${ui.soft}`}>
+                    <p className="text-sm font-semibold text-foreground">{item}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={taskConfig?.route || '#'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.button}`}>
                   Explore results <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -156,7 +164,11 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
               </div>
             </div>
 
-            <form className={`grid gap-3 rounded-[2rem] p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] ${ui.soft}`} action={taskConfig?.route || '#'}>
+            <form className={`grid gap-4 rounded-[2.1rem] p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] ${ui.soft}`} action={taskConfig?.route || '#'}>
+              <div className={`rounded-[1.5rem] p-4 ${ui.panel}`}>
+                <p className={`text-xs font-semibold uppercase tracking-[0.24em] ${ui.muted}`}>Filter lane</p>
+                <p className={`mt-2 text-sm leading-7 ${ui.muted}`}>Move between categories while keeping the new showcase-style layout intact.</p>
+              </div>
               <div>
                 <label className={`text-xs uppercase tracking-[0.2em] ${ui.muted}`}>Category</label>
                 <select name="category" defaultValue={normalizedCategory} className={`mt-2 h-11 w-full rounded-xl px-3 text-sm ${ui.input}`}>

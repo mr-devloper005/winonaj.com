@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Download, Newspaper } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -25,24 +24,28 @@ export default function PressPage() {
   const activeAsset = mockPressAssets.find((asset) => asset.id === activeAssetId)
 
   return (
-    <div className="min-h-screen bg-[#fbf6ee] text-[#241711]">
+    <div className="min-h-screen bg-transparent">
       <NavbarShell />
       <main>
-        <section className="border-b border-[#dcc8b7]/80 bg-[linear-gradient(180deg,#fffdf9_0%,#fbf6ee_100%)]">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#8a6f5e]">
+        <div className="border-b border-[#333F44]/10 bg-[#333F44]/[0.04]">
+          <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
+            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#4a5c5f]">
               <Newspaper className="h-4 w-4" />
               Press room
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
+          </div>
+        </div>
+        <section className="border-b border-white/10 bg-[#1A1A1B]">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl text-white">
               Media resources for {SITE_CONFIG.name}.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-[#6e5547]">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#94F3E4]/75">
               Download approved logos, product imagery, and leadership bios. For interview requests, route through our
               communications desk—we reply within two business days.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Button asChild className="rounded-full bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]">
+              <Button asChild className="rounded-full bg-[#37AA9C] text-[#0a1214] hover:bg-[#94F3E4]">
                 <a href="#press-kit" className="inline-flex items-center gap-2">
                   Jump to kit
                   <ArrowRight className="h-4 w-4" />
@@ -51,7 +54,7 @@ export default function PressPage() {
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full border-[#dcc8b7] bg-transparent hover:bg-[#f5e7d7]"
+                className="rounded-full border-white/10 bg-white/10 text-white hover:bg-white/20"
               >
                 <Link href="/contact">Talk to communications</Link>
               </Button>
@@ -59,16 +62,16 @@ export default function PressPage() {
           </div>
         </section>
 
-        <section className="border-b border-[#dcc8b7]/50 bg-[#fffdfa]">
+        <section className="border-b border-white/10 bg-[#1A1A1B]/50">
           <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:grid-cols-3 sm:px-6 lg:px-8">
             {[
               ['Global bylines', '40+ contributing writers'],
               ['Average read time', '8.4 minutes per feature'],
               ['Newsletter', 'Weekly for members'],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-[#e6d6c8] bg-[#fbf6ee] p-6 text-center sm:text-left">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">{label}</p>
-                <p className="mt-2 text-lg font-semibold text-[#241711]">{value}</p>
+              <div key={label} className="rounded-2xl border border-white/10 bg-[#1A1A1B]/50 p-6 text-center sm:text-left">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#37AA9C]">{label}</p>
+                <p className="mt-2 text-lg font-semibold text-white">{value}</p>
               </div>
             ))}
           </div>
@@ -76,72 +79,83 @@ export default function PressPage() {
 
         <section id="press-kit" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[1.12fr_0.88fr]">
-            <div className="rounded-[2rem] border border-[#dcc8b7] bg-[#fffdfa] p-7 shadow-[0_24px_60px_rgba(77,47,27,0.07)]">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em]">Press kit</h2>
-              <p className="mt-3 text-sm leading-7 text-[#6e5547]">
-                Assets below are cleared for editorial use with attribution. Need something bespoke? Email communications
-                with your outlet, deadline, and intended crop.
-              </p>
-              <div className="mt-8 space-y-3">
-                {mockPressAssets.map((asset) => (
-                  <div
-                    key={asset.id}
-                    className="rounded-2xl border border-[#e6d6c8] bg-[#fff4e8]/60 p-4 transition-colors hover:border-[#c5a059]/45"
-                  >
-                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                      <div>
-                        <p className="text-sm font-semibold text-[#241711]">{asset.title}</p>
-                        <p className="mt-1 text-xs leading-relaxed text-[#6e5547]">{asset.description}</p>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <Badge variant="secondary" className="rounded-full bg-[#241711]/8 text-[#241711]">
-                          {asset.fileType}
-                        </Badge>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="rounded-full border-[#dcc8b7] bg-white/90"
-                          onClick={() => setActiveAssetId(asset.id)}
-                        >
-                          Preview
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="rounded-full bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]"
-                          onClick={() =>
-                            toast({
-                              title: 'Download started',
-                              description: `${asset.title} is downloading.`,
-                            })
-                          }
-                        >
-                          <Download className="mr-1.5 h-3.5 w-3.5" />
-                          Download
-                        </Button>
+            <div className="rounded-[2rem] border border-white/10 bg-[#1A1A1B] p-7 shadow-[0_36px_90px_rgba(0,0,0,0.2)]">
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(55,170,156,0.07)_0%,transparent_45%,rgba(148,243,228,0.05)_100%)] rounded-[2rem]" />
+              <div className="relative">
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white">Press kit</h2>
+                <p className="mt-3 text-sm leading-7 text-[#94F3E4]/75">
+                  Assets below are cleared for editorial use with attribution. Need something bespoke? Email communications
+                  with your outlet, deadline, and intended crop.
+                </p>
+                <div className="mt-8 space-y-3">
+                  {mockPressAssets.map((asset) => (
+                    <div
+                      key={asset.id}
+                      className="rounded-2xl border border-white/10 bg-[#1A1A1B]/50 p-4 transition-colors hover:border-[#37AA9C]/45"
+                    >
+                      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                        <div>
+                          <p className="text-sm font-semibold text-white">{asset.title}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-[#94F3E4]/75">{asset.description}</p>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge variant="secondary" className="rounded-full bg-white/8 text-white">
+                            {asset.fileType}
+                          </Badge>
+                          <Button
+                            size="sm"
+                            className="rounded-full bg-[#37AA9C] text-[#0a1214] hover:bg-[#94F3E4]"
+                            onClick={() => setActiveAssetId(asset.id)}
+                          >
+                            Preview
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="space-y-5">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.26em] text-[#8a6f5e]">Recent coverage</h2>
-              {mockPressCoverage.map((item) => (
-                <article
-                  key={item.id}
-                  className="rounded-[1.5rem] border border-[#dcc8b7] bg-[#fffdfa] p-6 transition-transform hover:-translate-y-0.5"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8a6f5e]">{item.outlet}</p>
-                  <p className="mt-3 text-sm font-medium leading-relaxed text-[#241711]">{item.headline}</p>
-                  <p className="mt-2 text-xs text-[#6e5547]">{item.date}</p>
-                </article>
-              ))}
+            <div className="space-y-6">
+              <div className="rounded-[2rem] border border-white/10 bg-[#1A1A1B]/50 p-7">
+                <h3 className="text-lg font-semibold text-white">Contact</h3>
+                <div className="mt-4 space-y-3 text-sm">
+                  <div>
+                    <p className="font-semibold text-white">Media inquiries</p>
+                    <p className="text-[#94F3E4]/75">communications@{SITE_CONFIG.name.toLowerCase()}.com</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Response time</p>
+                    <p className="text-[#94F3E4]/75">Within 2 business days</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="rounded-[2rem] border border-white/10 bg-[#1A1A1B] p-8 shadow-[0_36px_90px_rgba(0,0,0,0.2)]">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(55,170,156,0.07)_0%,transparent_45%,rgba(148,243,228,0.05)_100%)] rounded-[2rem]" />
+            <div className="relative">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white">Recent coverage</h2>
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {mockPressCoverage.map((item) => (
+                  <article
+                    key={item.outlet}
+                    className="rounded-2xl border border-white/10 bg-[#1A1A1B]/50 p-6 transition-colors hover:border-[#37AA9C]/45"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#37AA9C]">{item.outlet}</p>
+                    <p className="mt-3 text-sm font-medium leading-relaxed text-white">{item.headline}</p>
+                    <p className="mt-2 text-xs text-[#94F3E4]/75">{item.date}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
 
       <Dialog open={Boolean(activeAsset)} onOpenChange={() => setActiveAssetId(null)}>
         <DialogContent className="max-w-3xl border-[#dcc8b7] bg-[#fffdfa]">

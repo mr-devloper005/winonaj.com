@@ -2,7 +2,6 @@
 
 import type { ReactNode } from 'react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 
 export function PageShell({
   title,
@@ -36,7 +35,6 @@ export function PageShell({
           {children}
         </section>
       </main>
-      <Footer />
     </div>
   )
 }
