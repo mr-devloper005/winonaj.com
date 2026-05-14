@@ -1,7 +1,5 @@
-import Link from 'next/link'
-import { ArrowRight, Feather, Gem, Sparkles } from 'lucide-react'
+import { Feather, Gem, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Button } from '@/components/ui/button'
 import { SITE_CONFIG } from '@/lib/site-config'
 
 const pillars = [
@@ -90,16 +88,6 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="mt-8 flex flex-col gap-3 lg:mt-0 lg:items-end">
-              <Button asChild className="w-full rounded-full bg-[#37AA9C] text-[#0a1214] hover:bg-[#94F3E4] sm:w-auto">
-                <Link href="/press">Press &amp; media kit</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="w-full rounded-full border-white/10 bg-white/10 text-white hover:bg-white/20 sm:w-auto"
-              >
-                <Link href="/articles">Read the latest issue</Link>
-              </Button>
             </div>
           </div>
         </section>

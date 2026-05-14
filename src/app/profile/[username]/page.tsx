@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Footer } from "@/components/shared/footer";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { ContentImage } from "@/components/shared/content-image";
 import { TaskPostCard } from "@/components/shared/task-post-card";
@@ -187,7 +186,6 @@ export default async function ProfileDetailPage({ params }: { params: Promise<{ 
           </section>
         ) : null}
       </main>
-      <Footer />
     </div>
   );
 }
