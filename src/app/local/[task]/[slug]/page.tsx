@@ -5,7 +5,6 @@ import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import { MapPin, Globe, Phone, Tag, Mail } from "lucide-react";
 import { NavbarShell } from "@/components/shared/navbar-shell";
-import { Footer } from "@/components/shared/footer";
 import { TaskImageCarousel } from "@/components/tasks/task-image-carousel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -120,7 +119,6 @@ export default function LocalPostDetailPage() {
             <Link href="/">Back home</Link>
           </Button>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -268,7 +266,6 @@ export default function LocalPostDetailPage() {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 }

@@ -1,8 +1,14 @@
+'use client'
+
+import { FormEvent, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { Bookmark, Building2, FileText, Image as ImageIcon, Sparkles } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Bookmark, Building2, FileText, Image as ImageIcon, ShieldCheck, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
+import { useAuth } from '@/lib/auth-context'
+import { Button } from '@/components/ui/button'
 
 function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
   if (kind === 'directory') {
@@ -10,11 +16,14 @@ function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
       shell: 'bg-[#f8fbff] text-slate-950',
       panel: 'border border-slate-200 bg-white',
       side: 'border border-slate-200 bg-slate-50',
+      glow: 'from-slate-100/90 via-white to-slate-50/90',
       muted: 'text-slate-600',
       action: 'bg-slate-950 text-white hover:bg-slate-800',
       icon: Building2,
-      title: 'Access your business dashboard',
-      body: 'Manage listings, verification details, contact info, and local discovery surfaces from one place.',
+      eyebrow: 'Business workspace',
+      title: 'Sign in to keep your local profile active',
+      body: 'Access listings, operating hours, credibility details, and customer touchpoints from one calm space.',
+      highlights: ['Fresh local lead updates', 'Fast listing edits on any device', 'Built-in visibility health checks'],
     }
   }
   if (kind === 'editorial') {
@@ -22,11 +31,14 @@ function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
       shell: 'bg-[#fbf6ee] text-[#241711]',
       panel: 'border border-[#dcc8b7] bg-[#fffdfa]',
       side: 'border border-[#e6d6c8] bg-[#fff4e8]',
+      glow: 'from-[#f8eadb] via-[#fffaf4] to-[#fff4e8]',
       muted: 'text-[#6e5547]',
       action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
       icon: FileText,
-      title: 'Sign in to your publication workspace',
-      body: 'Draft, review, and publish long-form work with the calmer reading system intact.',
+      eyebrow: 'Editorial workspace',
+      title: 'Welcome back to your writing studio',
+      body: 'Pick up drafts, approve revisions, and keep publication timelines moving without context switching.',
+      highlights: ['Draft autosave checkpoints', 'Reviewer notes at a glance', 'Publication queue status'],
     }
   }
   if (kind === 'visual') {
@@ -34,60 +46,106 @@ function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
       shell: 'bg-[#07101f] text-white',
       panel: 'border border-white/10 bg-white/6',
       side: 'border border-white/10 bg-white/5',
+      glow: 'from-[#132542] via-[#0a162a] to-[#07101f]',
       muted: 'text-slate-300',
       action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
       icon: ImageIcon,
-      title: 'Enter the creator workspace',
-      body: 'Open your visual feed, creator profile, and publishing tools without dropping into a generic admin shell.',
+      eyebrow: 'Creator workspace',
+      title: 'Sign in and continue your visual story',
+      body: 'Return to your gallery pipeline, publishing queue, and portfolio identity in seconds.',
+      highlights: ['Portfolio-first publishing flow', 'Media-ready profile controls', 'Creator analytics snapshot'],
     }
   }
   return {
     shell: 'bg-[#f7f1ea] text-[#261811]',
     panel: 'border border-[#ddcdbd] bg-[#fffaf4]',
     side: 'border border-[#e8dbce] bg-[#f3e8db]',
+    glow: 'from-[#f3e8db] via-[#fff7ef] to-[#f9efe3]',
     muted: 'text-[#71574a]',
     action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
     icon: Bookmark,
-    title: 'Open your curated collections',
-    body: 'Manage saved resources, collection notes, and curator identity from a calmer workspace.',
+    eyebrow: 'Collection workspace',
+    title: 'Sign in to open your saved collections',
+    body: 'Get back to bookmarked resources, curated boards, and personal knowledge trails instantly.',
+    highlights: ['Collection notes synced', 'Priority boards up front', 'Smart revisit suggestions'],
   }
 }
 
 export default function LoginPage() {
+  const router = useRouter()
+  const { login, isLoading } = useAuth()
   const { recipe } = getFactoryState()
   const productKind = getProductKind(recipe)
-  const config = getLoginConfig(productKind)
+  const config = useMemo(() => getLoginConfig(productKind), [productKind])
   const Icon = config.icon
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    await login(email, password)
+    router.push('/')
+  }
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className={`min-h-screen ${config.shell}`}>
       <NavbarShell />
-      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch">
-          <div className={`rounded-[2rem] p-8 ${config.side}`}>
-            <Icon className="h-8 w-8" />
-            <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{config.title}</h1>
-            <p className={`mt-5 text-sm leading-8 ${config.muted}`}>{config.body}</p>
-            <div className="mt-8 grid gap-4">
-              {['Cleaner product-specific workflows', 'Palette and layout matched to the site family', 'Fewer repeated admin patterns'].map((item) => (
-                <div key={item} className="rounded-[1.5rem] border border-current/10 px-4 py-4 text-sm">{item}</div>
-              ))}
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <section className={`relative overflow-hidden rounded-[2.25rem] border border-current/10 bg-gradient-to-br ${config.glow}`}>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.42),transparent_45%)]" />
+          <div className="relative grid gap-8 p-5 sm:p-8 lg:grid-cols-[1fr_1fr] lg:p-10">
+            <div className={`rounded-[1.8rem] border border-current/10 p-7 backdrop-blur-sm ${config.side}`}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-current/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em]">
+                <Icon className="h-3.5 w-3.5" />
+                {config.eyebrow}
+              </div>
+              <h1 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{config.title}</h1>
+              <p className={`mt-4 text-sm leading-7 ${config.muted}`}>{config.body}</p>
+              <div className="mt-8 grid gap-3">
+                {config.highlights.map((item) => (
+                  <div key={item} className="rounded-2xl border border-current/10 bg-white/40 px-4 py-3 text-sm">
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex items-start gap-3 rounded-2xl border border-current/10 bg-white/45 p-4">
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" />
+                <p className={`text-xs leading-6 ${config.muted}`}>Your session is private and secured through the same trust-first experience used across the homepage journey.</p>
+              </div>
             </div>
-          </div>
 
-          <div className={`rounded-[2rem] p-8 ${config.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Welcome back</p>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Password" type="password" />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action}`}>Sign in</button>
-            </form>
-            <div className={`mt-6 flex items-center justify-between text-sm ${config.muted}`}>
-              <Link href="/forgot-password" className="hover:underline">Forgot password?</Link>
-              <Link href="/register" className="inline-flex items-center gap-2 font-semibold hover:underline">
-                <Sparkles className="h-4 w-4" />
-                Create account
-              </Link>
+            <div className={`rounded-[1.8rem] p-7 sm:p-8 ${config.panel}`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Sign in</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em]">Continue where you left off</h2>
+              <form className="mt-7 grid gap-4" onSubmit={handleSubmit}>
+                <input
+                  className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm outline-none ring-[#AE2448]/20 transition focus:ring-2"
+                  placeholder="Email address"
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+                <input
+                  className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm outline-none ring-[#AE2448]/20 transition focus:ring-2"
+                  placeholder="Password"
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  required
+                />
+                <Button type="submit" disabled={isLoading} className={`mt-2 inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action}`}>
+                  {isLoading ? 'Signing in...' : 'Sign in'}
+                </Button>
+              </form>
+              <div className={`mt-6 flex items-center justify-between text-sm ${config.muted}`}>
+                <Link href="/forgot-password" className="hover:underline">Forgot password?</Link>
+                <Link href="/register" className="inline-flex items-center gap-2 font-semibold hover:underline">
+                  <Sparkles className="h-4 w-4" />
+                  Create account
+                </Link>
+              </div>
+              <p className={`mt-6 text-xs leading-6 ${config.muted}`}>By signing in, you agree to our community standards and platform guidelines.</p>
             </div>
           </div>
         </section>

@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import './globals.css'
 
 import { ThemeProvider } from '@/components/theme-provider'
+import { Footer } from '@/components/shared/footer'
 import { Toaster } from '@/components/ui/toaster'
 import { AuthProvider } from '@/lib/auth-context'
 import { buildSiteMetadata } from '@/lib/seo'
@@ -25,7 +26,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <AuthProvider>
-            {children}
+            <div className="flex min-h-screen flex-col">
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
             <Toaster />
           </AuthProvider>
         </ThemeProvider>

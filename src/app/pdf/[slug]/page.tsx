@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-import { Footer } from "@/components/shared/footer";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { TaskPostCard } from "@/components/shared/task-post-card";
 import { SchemaJsonLd } from "@/components/seo/schema-jsonld";
@@ -166,7 +164,6 @@ export default async function PdfDetailPage({ params }: { params: Promise<{ slug
           </section>
         ) : null}
       </main>
-      <Footer />
     </div>
   );
 }

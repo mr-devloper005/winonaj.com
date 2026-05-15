@@ -151,9 +151,11 @@ export function Navbar() {
               </Link>
             ) : null}
 
-            {isAuthenticated ? (
-              <NavbarAuthControls />
-            ) : (
+          {isAuthenticated ? (
+            <NavbarAuthControls />
+          ) : (
+            <>
+              <NavbarAuthControls showSignOut={false} />
               <div className="hidden items-center gap-2 md:flex">
                 <Button variant="ghost" size="sm" asChild className="rounded-full px-4">
                   <Link href="/login">Sign In</Link>
@@ -165,7 +167,8 @@ export function Navbar() {
                   </Link>
                 </Button>
               </div>
-            )}
+            </>
+          )}
 
             <Button variant="ghost" size="icon" className="rounded-full lg:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -290,14 +293,17 @@ export function Navbar() {
           {isAuthenticated ? (
             <NavbarAuthControls />
           ) : (
-            <div className="hidden items-center gap-2 md:flex">
-              <Button variant="ghost" size="sm" asChild className="rounded-full px-4">
-                <Link href="/login">Sign In</Link>
-              </Button>
-              <Button size="sm" asChild className={style.cta}>
-                <Link href="/register">{isEditorial ? 'Subscribe' : isUtility ? 'Post Now' : 'Get Started'}</Link>
-              </Button>
-            </div>
+            <>
+              <NavbarAuthControls showSignOut={false} />
+              <div className="hidden items-center gap-2 md:flex">
+                <Button variant="ghost" size="sm" asChild className="rounded-full px-4">
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button size="sm" asChild className={style.cta}>
+                  <Link href="/register">{isEditorial ? 'Subscribe' : isUtility ? 'Post Now' : 'Get Started'}</Link>
+                </Button>
+              </div>
+            </>
           )}
 
           <Button variant="ghost" size="icon" className="rounded-full lg:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
