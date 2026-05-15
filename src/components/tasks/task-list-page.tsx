@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Building2, FileText, Image as ImageIcon, LayoutGrid, Tag, User } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 import { TaskListClient } from '@/components/tasks/task-list-client'
 import { SchemaJsonLd } from '@/components/seo/schema-jsonld'
 import { fetchTaskPosts } from '@/lib/task-data'
@@ -393,7 +392,6 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
 
         <TaskListClient task={task} initialPosts={posts} category={normalizedCategory} />
       </main>
-      <Footer />
     </div>
   )
 }

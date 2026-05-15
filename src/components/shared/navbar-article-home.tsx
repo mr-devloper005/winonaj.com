@@ -62,6 +62,8 @@ export function NavbarArticleHome() {
 
   return (
     <>
+      <NavbarAuthControls showSignOut={false} />
+
       {/* Desktop / tablet: left rail */}
       <aside
         className="fixed inset-y-0 left-0 z-50 hidden w-[var(--site-nav-rail-width,5.5rem)] flex-col border-r border-[#333F44]/80 bg-[#1A1A1B] py-5 shadow-[4px_0_24px_rgba(0,0,0,0.12)] md:flex"
@@ -121,7 +123,7 @@ export function NavbarArticleHome() {
         <div className="mt-auto flex flex-col gap-2 border-t border-white/10 px-1.5 pt-4">
           {isAuthenticated ? (
             <div className="flex justify-center">
-              <NavbarAuthControls />
+              <NavbarAuthControls compact />
             </div>
           ) : (
             <>

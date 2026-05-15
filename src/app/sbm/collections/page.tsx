@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FolderPlus } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
-import { Footer } from '@/components/shared/footer'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { BookmarkCollectionCard } from '@/components/sbm/bookmark-collection-card'
@@ -65,8 +64,6 @@ export default function BookmarkCollectionsPage() {
           </motion.div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }
